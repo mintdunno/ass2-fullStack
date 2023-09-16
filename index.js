@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 6900;
 const bcrypt = require("bcryptjs");
 const fileUpload = require("express-fileupload");
 const schema = require("./models/schema");
@@ -19,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.render("login-page");
 });
+
+var vid = String;
 
 // For customer
 app.get("/customer/register", (req, res) => {
@@ -259,6 +261,7 @@ app.post("/", async (req, res) => {
       }
 
       //Access homepage by ID
+      vid = vendor._id;
       res.redirect(`/vendor/homepage/${vendor._id}`);
     }
 
@@ -294,29 +297,60 @@ app.post("/", async (req, res) => {
 
 // Vendor Route part
 // Route for Vendor homepage
-app.get("/vendor/homepage/:id", (req, res) => {
+app.get("/vendor/homepage/:id", async (req, res) => {
+  const vendor = await Vendor.findById(req.params.id);
+  const products = await Product.find({ vendorUsername: `${vendor.username}` });
   Vendor.findById(req.params.id)
-    .then((vendor) => {
-      res.render("vendor-homepage", { vendor });
-    })
-    .catch((error) => res.send(error));
+  try {
+    res.render("vendor-homepage", { vendor, products });
+  } catch (e) {
+
+  }
+  // .then((vendor) => {
+  //   res.render("vendor-homepage", { vendor });
+  // })
+  // .catch((error) => res.send(error));
 });
 
 //Get add product page
-app.get("/vendor/addproduct/:id", (req, res) => {
+app.get("/vendor/addproduct/:id/", (req, res) => {
   Vendor.findById(req.params.id)
     .then((vendor) => {
       res.render("addProduct", { vendor });
     })
     .catch((error) => res.send(error));
 });
-//add product
-app.post("/vendor/addproduct/:id", (req, res) => {
-  Vendor.findById(req.params.id)
-    .then((vendor) => {
-      res.render("addProduct", { vendor });
-    })
+// CREATE - Create a new products
+app.post("/vendor/products/add/", (req, res) => {
+  const product = new Product({
+    name: req.body.productName,
+    price: req.body.price,
+    description: req.body.description,
+    amount: req.body.amount,
+    category: req.body.productType,
+    vendorUsername: req.body.vendorUsername,
+    image: {
+      data: req.files.productPIC.data,
+      mimeType: req.files.productPIC.mimetype,
+    },
+  });
+  product
+    .save()
+    .then(() => res.redirect(`/vendor/homepage/${vid}`))
     .catch((error) => res.send(error));
+});
+
+// Edit Product
+app.get("/product/:vid/update/:pid", async (req, res) => {
+  const vendor = await Vendor.findById(req.params.vid);
+  Product.findById(req.params.pid)
+    .then((product) => {
+      if (!product) {
+        return res.send("Not found any product matching the ID!");
+      }
+      res.render("update-product", { product, vendor });
+    })
+  //   .catch((error) => res.send(error));
 });
 
 //get vendor profile
@@ -328,26 +362,25 @@ app.get("/vendor/profile/:id", async (req, res) => {
     .catch((error) => res.send(error));
 });
 //update vendor profile
-app.post("/vendor/profile/:id", (req, res) => {
-  const updates = Object.keys(req.body);
-  const allowedUpdates = ["bName", "email", "phone", "address"];
-  const isValidOperation = updates.every((update) =>
-    allowedUpdates.includes(update)
-  );
-  // if (!isValidOperation) {
-  //   return res.send({ error: "Invalid updates!" });
-  // }
-  Vendor.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  })
-    .then((vendor) => {
-      if (!vendor) {
-        return res.send("Not found this user");
-      }
-      res.render("vendor-profile");
+// Bug when update image
+app.post("/vendor/profile/:id", async (req, res) => {
+  await Vendor.findByIdAndUpdate(
+    { _id: req.params.id },
+
+    {
+      username: req.body.username,
+      businessName: req.body.bName,
+      phone: req.body.phone,
+      email: req.body.email,
+      address: req.body.address,
+    },
+    { new: true }
+  )
+    .then(() => {
+      console.log("Vendor information was succesfully added");
+      res.redirect(`/vendor/homepage/${req.params.id}`);
     })
-    .catch((error) => res.send(error));
+    .catch((error) => console.log(error.message));
 });
 
 app.listen(port, () => {
