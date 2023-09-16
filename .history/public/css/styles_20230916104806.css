@@ -1,0 +1,11 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.nav-item {
+    color: black;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+}

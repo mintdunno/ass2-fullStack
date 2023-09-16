@@ -1,170 +1,134 @@
-<!-- Header for vendor -->
-<%- include('./partials/vendor-head') %>
+<!DOCTYPE html>
+<html lang="en">
 
-    <h2 class="text-center m-5 fw-bolder">Hello, <%= vendor.fullName %>
-    </h2>
-    <div class="container shadow-lg p-3 mt-4">
-        <h3 class="text-center">Your products</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">PRODUCT'S NAME:</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">STOCK</th>
-                    <th scope="col">ACTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% products.forEach(product=> { %>
-                    <tr>
-                        <!-- Product name -->
-                        <td data-label="product name">
-                            <%= product.name %>
-                        </td>
-                        <!-- Price use function x = x.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}); to display , and d-->
-                        <td data-label="price">
-                            <%= (product.price).toLocaleString('it-IT', {style : 'currency' , currency : 'VND' }) %>
-                        </td>
-                        <td data-label="stock">
-                            <%= product.amount %>
-                        </td>
-                        <td data-label="action" class="d-flex justify-content-between justify-content-md-center">
-                            <div class="d-flex gap-4">
-                                <div>
-                                    <!-- Create Button -->
-                                    <!-- link to edit page -->
-                                    <a href="/product/<%= vendor.id %>/update/<%= product.id %>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path
-                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                            <path fill-rule="evenodd"
-                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                        </svg>
-                                    </a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vender Page</title>
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/vendor.css" />
+</head>
+
+<body>
+    <!-- Header Section Is Here just for vender -->
+    <div class="container-fluid">
+        <header class="pb-4 bg-body-secondary">
+            <div class="container-fluid d-flex flex-wrap justify-content-evenly gap-5">
+                <div class="">
+                    <!-- Logo is hear -->
+                    <!-- Link back to vender page -->
+                    <a href="/vendor/homepage/<%= vendor?.id %>"
+                        class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                        <img loading="lazy" width="250px" src="/img/logo.svg" alt="Logo" />
+                    </a>
+                </div>
+        </header>
+
+
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4">
+                <span class="text-muted fw-light">Profile /</span> Account
+            </h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <h5 class="card-header">Bussiness Details</h5>
+                        <!-- Account -->
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- User avatar is here -->
+                                <div class="col-md-3 text-center">
+                                    <img src="data:image/<%= vendor?.profilePicture.contentType %>;base64,<%= vendor?.profilePicture.data.toString('base64') %>"
+                                        alt="user-avatar" class="img-thumbnail" id="uploadedAvatar">
+                                    <label for="upload" class="btn btn-dark mt-2">
+                                        <span class="d-none d-sm-block">Upload new Logo</span>
+                                        <i class="bx bx-upload d-block d-sm-none"></i>
+                                        <input type="file" id="upload" class="account-file-input" hidden=""
+                                            accept="image/png, image/jpeg">
+                                    </label>
+                                    <button type="button" class="btn btn-outline-secondary mt-2 account-image-reset">
+                                        <i class="bx bx-reset d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Reset</span>
+                                    </button>
+                                    <p class="text-muted mt-2">Allowed JPG or PNG.</p>
                                 </div>
-                                <div>
-                                    <!-- Delete button -->
-                                    <!-- Link to delete mongose -->
-                                    <a href="vendor/product/<%= product._id %>/delete" class="text-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                            <path
-                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                        </svg>
-                                    </a>
+                                <div class="col-md-9">
+                                    <form id="formAccountSettings" method="POST"
+                                        action="/vendor/profile/<%= vendor?.id %>" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <!-- Username -->
+                                            <div class="mb-3 col-md-6">
+                                                <label for="username" class="form-label">User Name</label>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    value="<%= vendor?.username %>" disabled>
+                                            </div>
+                                            <!-- Bussiness name -->
+                                            <div class="mb-3 col-md-6">
+                                                <label for="bName" class="form-label">Business Name</label>
+                                                <input class="form-control" type="text" id="bName" name="bName"
+                                                    value="<%= vendor?.bName %>" autofocus="">
+                                            </div>
+                                            <!-- Vendor email -->
+                                            <div class="mb-3 col-md-6">
+                                                <label for="email" class="form-label">E-mail</label>
+                                                <input class="form-control" type="email" id="email" name="email"
+                                                    value="<%= vendor?.email %>">
+                                            </div>
+                                            <!-- Vendor's phone -->
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label" for="phoneNumber">Phone Number</label>
+                                                <div class="input-group input-group-merge">
+                                                    <input type="number" id="phone" name="phone" class="form-control"
+                                                        value="<%= vendor?.phone %>">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="address" class="form-label">Business Address</label>
+                                                <input type="text" class="form-control" id="address" name="address"
+                                                    value="<%= vendor?.address %>">
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <button type="reset" class="btn btn-outline-secondary me-2">Cancel</button>
+                                            <button type="submit" class="btn btn-dark">Save changes</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                    <% }) %>
-                        <!-- T-row -->
-                        <tr>
-                            <!-- Product name -->
-                            <td data-label="product name">WOODEN SAIGONOPOLY</td>
-                            <!-- Price use function x = x.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}); to display , and d-->
-                            <td data-label="price">2.935.700₫</td>
-                            <td data-label="stock">20</td>
-                            <td data-label="action" class="d-flex justify-content-between justify-content-md-center">
-                                <div class="d-flex gap-4">
-                                    <div>
-                                        <!-- Create Button -->
-                                        <!-- link to edit page -->
-                                        <a href="editProduct.html">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <!-- Delete button -->
-                                        <!-- Link to delete mongose -->
-                                        <a href="/product/delete/" class="text-danger">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                                <path
-                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- T-row -->
-                        <tr>
-                            <td data-label="product name">WOODEN SAIGONOPOLY</td>
-                            <td data-label="price">2.935.700₫</td>
-                            <td data-label="stock">20</td>
-                            <td data-label="action" class="d-flex justify-content-between justify-content-md-center">
-                                <div class="d-flex gap-4">
-                                    <div>
-                                        <!-- Create Button -->
-                                        <!-- link to edit page -->
-                                        <a href="editProduct.html">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <!-- Delete button -->
-                                        <!-- Link to delete mongose -->
-                                        <a href="/product/delete/" class="text-danger">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                                <path
-                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- T-row -->
-
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                    <!-- /Account -->
+                </div>
+            </div>
+        </div>
+        <footer class="py-3 mt-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="privacy.html" class="nav-link px-2 text-body-secondary">Privacy Policy</a>
+                </li>
+                <li class="nav-item"><a href="operatingregulations.html"
+                        class="nav-link px-2 text-body-secondary">Operating
+                        Regulations</a>
+                </li>
+                <li class="nav-item"><a href="shipping.html" class="nav-link px-2 text-body-secondary">Shipping
+                        Policy</a>
+                </li>
+                <li class="nav-item"><a href="returnandrefund.html" class="nav-link px-2 text-body-secondary">Return and
+                        Refund
+                        Policy</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
+        </footer>
     </div>
-    <!-- Link to add product page -->
-    <a href="/vendor/addproduct/<%= vendor.id %>" class="text-decoration-none text-white" style="line-height: 40px;">
-        <div class="container bg-success text-center mt-5  rounded-3">ADD NEW PRODUCT</div>
-    </a>
 
-    <!------------- Footer section is HERE --------------------->
-    <footer class="py-3 mt-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="privacy.html" class="nav-link px-2 text-body-secondary">Privacy Policy</a>
-            </li>
-            <li class="nav-item"><a href="operatingregulations.html" class="nav-link px-2 text-body-secondary">Operating
-                    Regulations</a>
-            </li>
-            <li class="nav-item"><a href="shipping.html" class="nav-link px-2 text-body-secondary">Shipping
-                    Policy</a>
-            </li>
-            <li class="nav-item"><a href="returnandrefund.html" class="nav-link px-2 text-body-secondary">Return and
-                    Refund
-                    Policy</a></li>
-        </ul>
-        <p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
-    </footer>
-    <!------------- Footer section is HERE --------------------->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="myaccount.js"></script>
+</body>
 
-
-
-    </body>
-
-    </html>
+</html>

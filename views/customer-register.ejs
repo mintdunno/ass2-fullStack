@@ -1,93 +1,122 @@
-<%- include('./partials/vendor-head') %>
+<%- include('./partials/register-head') %>
 
-    <!-- Add Product is here -->
-    <div class="container my-5 shadow-lg p-3 rounded-5">
-        <h2 class="text-center fw-bolder text-success">ADD NEW PRODUCT</h2>
-        <div class="m-4" style="font-size: 15px; font-family:sans-serif;">
-            <!-- Link to add post produt -->
-            <form action="/vendor/products/add/" method="post" id="form" enctype="multipart/form-data">
+    <body>
+        <div class="container-fluid col-lg-8 text-center">
+            <main class="w-100 m-auto">
+                <form action="/customer/register" method="post" id="form" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <div class="col-md-6 text-center" id="logo">
+                            <a href="/customer/register"><img class="mb-2 text-center" src="/img/logo.svg" alt=""
+                                    width="300px"></a>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <h1 class="h3 mb-3 fw-normal">Customer Registation</h1>
+                        </div>
+                    </div>
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="true">Customer</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/shipper/register">Shipper</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-disabled="true" href="/vendor/register">Vendor</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <!-- Full Name -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="fullname" name="fullname"
+                                    placeholder="fullname" required="">
+                                <label for="firstname">Full Name</label>
+                            </div>
 
-                <!-- Product Name -->
-                <div class="mb-4">
-                    <label for="productName" class="d-block mb-2">📇 Product name:</label>
-                    <input type="text" class="w-100 form-control shadow-sm" name="productName" id="productName"
-                        required>
-                </div>
+                            <!-- Email -->
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                    required>
+                                <label for="email">Email</label>
+                            </div>
+                            <!-- Email -->
 
-                <!-- Product amout -->
-                <div class="mb-4">
-                    <label for="amount" class="d-block mb-2">🗃️ Amount:</label>
-                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="amount" id="amount"
-                        required>
-                </div>
+                            <!-- Phone -->
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone"
+                                    required>
+                                <label for="phone">Phone Number</label>
+                            </div>
+                            <!-- Phone -->
 
-                <!-- Product price -->
-                <div class="mb-4">
-                    <label for="price" class="d-block mb-2">💸 Price:</label>
-                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="price" id="price" required>
-                </div>
+                            <!-- Address -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="address" name="address"
+                                    placeholder="address" required>
+                                <label for="address">Address</label>
+                            </div>
+                            <!-- Address -->
 
-                <!-- Product type -->
-                <div class="mb-4">
-                    <label for="productType" class="d-block mb-2">⛰️ Product type:</label>
-                    <select name="productType" id="productType" class="form-control shadow-sm" required>
-                        <option value="">-- Product Type --</option>
-                        <option value="Game & Toy">Game & Toy</option>
-                        <option value="Household appliances">Household appliances</option>
-                        <option value="Books">Books</option>
-                        <option value="Accessories">Accessories</option>
-                        <option value="Watches">Watches</option>
-                    </select>
-                </div>
+                            <!-- Username Section -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Username" required="">
+                                <label for="username">Username</label>
+                            </div>
+                            <!-- Username Section -->
 
-                <!-- Product img -->
-                <div class="mb-4">
-                    <label for="productPIC" class="d-block mb-2">📷 Product Image:</label>
-                    <input type="file" class="w-100 form-control shadow-sm" name="productPIC" id="productPIC"
-                        accept="image/*" required>
-                </div>
+                            <!-- Password Section -->
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password" required="">
+                                <label for="password">Password</label>
+                            </div>
+                            <!-- Password Section -->
 
-                <!-- product description -->
-                <div class="mb-4">
-                    <label for="description" class="d-block mb-2">📝 Description:</label>
-                    <textarea name="description" id="description" class="form-control" rows="5"></textarea>
-                </div>
-                <div>
-                    <input type="hidden" name="vendorUsername" id="vendorUsername" value="<%= vendor.username %>">
-                </div>
+                            <!-- Display Error -->
+                            <div id="error" style="color: red !important;"></div>
+                            <%- include('./partials/errorMsg.ejs') %>
+
+                                <!--Picture setup-->
+                                <div class="image-preview-container">
+                                    <div class="preview">
+                                        <img id="preview-selected-image">
+                                    </div>
+                                    <label for="file">Upload Image</label>
+                                    <input type="file" id="file" name="profilePicture" accept="image/*" required
+                                        onchange="previewImage(event);" />
+                                </div>
 
 
-                <!-- Button things -->
-                <div id="error" style="color: red !important;" class="text-center"></div>
-                <div class="text-center">
-                    <button type="reset" class="rounded border-0 px-4 py-2 bg-danger m-3">Reset</button>
-                    <button type="submit" class="rounded border-0 px-4 py-2 bg-success m-3">Create</button>
-                </div>
-            </form>
+                                <!-- checkbox -->
+                                <div class="form-check ">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                        required>
+                                    <label class="form-check-label d-flex" for="flexCheckDefault">
+                                        I have read and agree to the terms and conditions
+                                    </label>
+                                </div>
+                                <!-- checkbox -->
+
+
+                                <!-- Submit section -->
+                                <button class="btn btn-dark w-100 my-4 py-2" type="submit">Sign Up</button>
+                                <!-- Submit section -->
+
+                                <p>Already have an account? <a href="/">Log In</a></p>
+                        </div>
+                    </div>
+                </form>
+            </main>
         </div>
-
-    </div>
-    <!------------- Footer section is HERE --------------------->
-    <footer class="py-3 mt-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="privacy.html" class="nav-link px-2 text-body-secondary">Privacy Policy</a>
-            </li>
-            <li class="nav-item"><a href="operatingregulations.html" class="nav-link px-2 text-body-secondary">Operating
-                    Regulations</a>
-            </li>
-            <li class="nav-item"><a href="shipping.html" class="nav-link px-2 text-body-secondary">Shipping
-                    Policy</a>
-            </li>
-            <li class="nav-item"><a href="returnandrefund.html" class="nav-link px-2 text-body-secondary">Return and
-                    Refund
-                    Policy</a></li>
-        </ul>
-        <p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
-    </footer>
-    <!------------- Footer section is HERE --------------------->
-
-
-
+        <footer class="py-3 mt-4">
+            <p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
     </body>
 
     </html>

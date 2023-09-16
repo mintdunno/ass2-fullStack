@@ -1,0 +1,12 @@
+.custom-bg-color {
+    background-color: #FFFEFA;
+}
+
+.btn-outline-secondary a {
+    color: #585C5E;
+    text-decoration: none;
+}
+
+.btn-outline-secondary :hover {
+    color: white;
+}
