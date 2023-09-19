@@ -5,7 +5,7 @@
         <h2 class="text-center fw-bolder text-success">ADD NEW PRODUCT</h2>
         <div class="m-4" style="font-size: 15px; font-family:sans-serif;">
             <!-- Link to add post produt -->
-            <form action="/addProduct" method="post" id="form">
+            <form action="/vendor/products/add/" method="post" id="form" enctype="multipart/form-data">
 
                 <!-- Product Name -->
                 <div class="mb-4">
@@ -17,13 +17,14 @@
                 <!-- Product amout -->
                 <div class="mb-4">
                     <label for="amount" class="d-block mb-2">🗃️ Amount:</label>
-                    <input type="number" class="w-100 form-control shadow-sm" name="amount" id="amount" required>
+                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="amount" id="amount"
+                        required>
                 </div>
 
                 <!-- Product price -->
                 <div class="mb-4">
                     <label for="price" class="d-block mb-2">💸 Price:</label>
-                    <input type="number" class="w-100 form-control shadow-sm" name="price" id="price" required>
+                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="price" id="price" required>
                 </div>
 
                 <!-- Product type -->
@@ -31,9 +32,11 @@
                     <label for="productType" class="d-block mb-2">⛰️ Product type:</label>
                     <select name="productType" id="productType" class="form-control shadow-sm" required>
                         <option value="">-- Product Type --</option>
-                        <option value="Something">Board</option>
-                        <option value="Something">Sneaker</option>
-                        <option value="somethig">Clothes</option>
+                        <option value="Game & Toy">Game & Toy</option>
+                        <option value="Household appliances">Household appliances</option>
+                        <option value="Books">Books</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Watches">Watches</option>
                     </select>
                 </div>
 
@@ -49,6 +52,10 @@
                     <label for="description" class="d-block mb-2">📝 Description:</label>
                     <textarea name="description" id="description" class="form-control" rows="5"></textarea>
                 </div>
+                <div>
+                    <input type="hidden" name="vendorUsername" id="vendorUsername" value="<%= vendor.username %>">
+                </div>
+
 
                 <!-- Button things -->
                 <div id="error" style="color: red !important;" class="text-center"></div>

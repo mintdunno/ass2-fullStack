@@ -117,13 +117,13 @@ const shipperSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// There is a strange bug that doesn't allow storing 5 elements in enum
+const productCategory = ["Game & Toy", "Household appliances", "Books", "Accessories", "Watches", "other"];
 const productSchema = new mongoose.Schema({
   //Name of the product
   name: {
     type: String,
     required: true,
-    minLength: 10,
-    maxLength: 20,
   },
   // Amount
   amount: {
@@ -141,13 +141,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: [
-      "Game & Toy",
-      "Household appliances",
-      "Books",
-      "Accessories",
-      "Watches",
-    ],
+    enum: productCategory,
   },
   image: {
     data: Buffer,

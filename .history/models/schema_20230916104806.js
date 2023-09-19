@@ -1,0 +1,176 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+mongoose
+  .connect(
+    "mongodb+srv://mint:mint@corner-store.cbiyacl.mongodb.net/Store?retryWrites=true&w=majority"
+  )
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch((error) => console.log(error.message));
+
+const customerSchema = new Schema(
+  {
+    fullname: String,
+
+    email: {
+      type: String,
+      required: true,
+    },
+
+    phone: {
+      type: Number,
+      require: true,
+    },
+
+    address: String,
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    profilePicture: {
+      data: Buffer,
+      mimeType: String,
+    },
+  },
+  { timestamps: true }
+);
+
+const vendorSchema = new Schema(
+  {
+    fullName: String,
+
+    bName: String,
+
+    email: {
+      type: String,
+      required: true,
+    },
+
+    phone: {
+      type: Number,
+      require: true,
+    },
+
+    address: String,
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    profilePicture: {
+      data: Buffer,
+      mimeType: String,
+    },
+  },
+  { timestamps: true }
+);
+
+const shipperSchema = new mongoose.Schema(
+  {
+    fullname: String,
+
+    email: {
+      type: String,
+      required: true,
+    },
+
+    phone: {
+      type: Number,
+      require: true,
+    },
+
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    // Distrubtion gub
+    location: {
+      type: String,
+      required: true,
+      enum: ["Ho Chi Minh", "Da Nang", "Ha Noi"],
+    },
+
+    profilePicture: {
+      data: Buffer,
+      mimeType: String,
+    },
+  },
+  { timestamps: true }
+);
+
+const productSchema = new mongoose.Schema({
+  //Name of the product
+  name: {
+    type: String,
+    required: true,
+    minLength: 10,
+    maxLength: 20,
+  },
+  // Amount
+  amount: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  // Price
+  price: {
+    type: Number,
+    required: true,
+    min: 0,
+  },
+  // category
+  category: {
+    type: String,
+    required: true,
+    enum: [
+      "Game & Toy",
+      "Household appliances",
+      "Books",
+      "Accessories",
+      "Watches",
+    ],
+  },
+  image: {
+    data: Buffer,
+    mimeType: String,
+  },
+  description: {
+    type: String,
+    maxLength: 500,
+  },
+  vendorUsername: {
+    type: String,
+    required: true,
+  },
+});
+
+// Create Customer model
+const Customer = mongoose.model("Customer", customerSchema);
+// Create Product model
+const Product = mongoose.model("Product", productSchema);
+//Create Vendor model
+const Vendor = mongoose.model("Vendor", vendorSchema);
+// Create Shipper model
+const Shipper = mongoose.model("Shipper", shipperSchema);
+
+// Export models
+module.exports = { Customer, Vendor, Shipper, Product };
