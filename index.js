@@ -350,6 +350,8 @@ app.post("/vendor/profile/:id", (req, res) => {
     .catch((error) => res.send(error));
 });
 
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
