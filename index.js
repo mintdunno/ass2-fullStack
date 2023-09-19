@@ -396,7 +396,7 @@ app.post("/vendor/profile/:id", async (req, res) => {
 
 
 
-//Testing
+//ROUTE TO CUSTOMER HOMEPAGE
 app.get("/customer/homepage/:id", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id); // Assuming you have a Customer model
@@ -408,6 +408,19 @@ app.get("/customer/homepage/:id", async (req, res) => {
     res.status(500).send("Error retrieving customer data.");
   }
 });
+
+//ROUTE TO CATEGORY PAGE
+// app.get("/customer/homepage/category/:category", async (req, res) =>{
+//   try {
+//     const category = req.params.category;
+//     const products = await Product.find({ category: category });
+//     res.render("customer-category", { products: products });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error retrieving customer data.");
+//   }
+// })
+
 
 
 
