@@ -421,6 +421,18 @@ app.get("/customer/homepage/:id", async (req, res) => {
 //   }
 // })
 
+//ROUTE TO CART PAGE
+app.get("/customer/cart/", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    const products = await Product.find({}); // Assuming you have an Order model associated with customers
+    res.render('cart', { customer, products  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving customer data.");
+  }
+});
+
 
 
 

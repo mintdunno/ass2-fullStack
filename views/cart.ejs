@@ -34,91 +34,48 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% products.forEach(product => { %>
                                         <!-- ------------------------------------------Product Summary Section is Here------------------------------- -->
-                                        <tr>
-                                            <th scope="row" class="border-0">
-                                                <div class="">
-                                                    <!-- Product Image -->
-                                                    <img src="assets/img/products/saigon-wooden-map.webp"
-                                                        alt="SAI GON WOODEN CITY MAP" width="70"
-                                                        class="img-fluid rounded shadow-sm">
-                                                    <div class="ml-3 d-inline-block align-middle">
-                                                        <!-- Product Name -->
-                                                        <h5 class="mb-0"> <a href="#"
-                                                                class="text-dark d-inline-block align-middle">SAI GON
-                                                                WOODEN
-                                                                CITY MAP</a></h5>
+                                            <tr>
+                                                <th scope="row" class="border-0">
+                                                    <div class="">
+                                                        <!-- Product Image -->
+                                                        <img src="<%= product.imageSrc %>"
+                                                            alt="<%= product.name %>" width="70"
+                                                            class="img-fluid rounded shadow-sm">
+                                                        <div class="ml-3 d-inline-block align-middle">
+                                                            <!-- Product Name -->
+                                                            <h5 class="mb-0"> <a href="#"
+                                                                    class="text-dark d-inline-block align-middle"><%= product.name %></a></h5>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </th>
-                                            <!-- Product Price -->
-                                            <td class="border-0 align-middle"><strong>1.227.300&#8363;</strong></td>
-                                            <!-- Increase and Decrease button -->
-                                            <td class="border-0 d-flex mt-4 gap-3">
-                                                <div class="quantity d-flex mt-2 gap-3">                                                    
-                                                    <span><button class="minus" onclick="minus()">-</button></span>
-                                                    <span><p id="quantity">1</p></span>
-                                                    <span><button class="plus" onclick="plus()">+</button></span>
-                                                </div>
-                                            </td> 
+                                                </th>
+                                            <!-- Product Price -->    
+                                                <td class="border-0 align-middle"><strong><%= product.price %></strong></td>
+                                                <!-- Increase and Decrease button -->
+                                                <td class="border-0 d-flex mt-4 gap-3">
+                                                    <div class="quantity d-flex mt-2 gap-3">                                                    
+                                                        <span><button class="minus" onclick="minus()">-</button></span>
+                                                        <span><p id="quantity">1</p></span>
+                                                        <span><button class="plus" onclick="plus()">+</button></span>
+                                                    </div>
+                                                </td> 
                                             <!-- <td class="border-0 d-flex mt-4 gap-3">
                                                 <span><button class="card" id="decreaseBtn">-</button></span>
                                                 <span>1</span>
                                                 <span><button class="card" id="increaseBtn">+</button></span>
                                             </td> -->
                                             <!-- Delete Button -->
-                                            <td class="border-0 align-middle ms-3"><a href="#" class="text-dark"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                                        <path
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                                    </svg></a></td>
-                                        </tr>
-                                        <!-- ------------------------------------------Product Summary Section is Here------------------------------- -->
-                                        <!-- ------------------------------------------Product Summary Section is Here------------------------------- -->
-                                        <tr>
-                                            <th scope="row" class="border-0">
-                                                <div class="">
-                                                    <!-- Product Image -->
-                                                    <img src="assets/img/products/danang-wooden-map.webp"
-                                                        alt="DA NANG WOODEN CITY MAP" width="70"
-                                                        class="img-fluid rounded shadow-sm">
-                                                    <div class="ml-3 d-inline-block align-middle">
-                                                        <h5 class="mb-0"> <a href="#"
-                                                                class="text-dark d-inline-block align-middle">DA NANG
-                                                                WOODEN
-                                                                CITY MAP</a></h5>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <!-- Product Price -->
-                                            <td class="border-0 align-middle"><strong>1.227.300&#8363;</strong></td>
-                                            <!-- Increase and Decrease button -->                                         
-                                            <td class="border-0 d-flex mt-4 gap-3">
-                                                <div class="quantity d-flex mt-2 gap-3">                                                    
-                                                    <span><button class="minus" onclick="minus()">-</button></span>
-                                                    <span><p id="quantity">1</p></span>
-                                                    <span><button class="plus" onclick="plus()">+</button></span>
-                                                </div>
-                                            </td>                                                                                          
-                                            <!-- <td class="border-0 d-flex mt-4 gap-3">
-                                                <span><button class="card" id="decreaseBtn">-</button></span>
-                                                <span>1</span>
-                                                <span><button class="card" id="increaseBtn">+</button></span>
-                                            </td> -->
-                                            <!-- Delete Button -->
-                                            <td class="border-0 align-middle ms-3"><a href="#" class="text-dark"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                                                        <path
-                                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-                                                    </svg></a></td>
-                                        </tr>
-                                        <!-- ------------------------------------------Product Summary Section is Here------------------------------- -->
+                                                <td class="border-0 align-middle ms-3"><a href="#" class="text-dark"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                                            <path
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                                        </svg></a></td>
+                                            </tr>
+                                        <% }) %>
                                     </tbody>
                                 </table>
                             </div>
