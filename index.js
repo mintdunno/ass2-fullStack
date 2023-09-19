@@ -384,6 +384,34 @@ app.post("/vendor/profile/:id", async (req, res) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+//Testing
+app.get("/customer/homepage/:id", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); // Assuming you have a Customer model
+    const products = await Product.find({}); // Assuming you have an Order model associated with customers
+
+    res.render("customer-homepage", { customer, products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving customer data.");
+  }
+});
+
+
+
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
