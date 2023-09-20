@@ -118,7 +118,14 @@ const shipperSchema = new mongoose.Schema(
 );
 
 // There is a strange bug that doesn't allow storing 5 elements in enum
-const productCategory = ["Game & Toy", "Household appliances", "Books", "Accessories", "Watches", "other"];
+const productCategory = [
+  "Game & Toy",
+  "Household appliances",
+  "Books",
+  "Accessories",
+  "Watches",
+  "other",
+];
 const productSchema = new mongoose.Schema({
   //Name of the product
   name: {
