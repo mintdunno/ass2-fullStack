@@ -65,7 +65,8 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        <button class="btn w-100 border" type="button">Add to Cart</button>
+                        <button class="add-to-cart" type="button">Add to Cart</button>
+                        <div class="add-to-cart-confirm" style="display: none;">Successfully added to cart</div>
                         <a href="/customer/cart/"><button class="btn w-100 border" type="button">Buy now</button></a>
                     </div>
                 </div>
@@ -133,3 +134,28 @@
     </body>
 
     </html>
+
+    <script>
+        const addToCart = document.querySelector('.add-to-cart');
+        addToCart.addEventListener('click', ()=>{
+            document.querySelector('.add-to-cart-confirm').style = "display:flex";
+            var added = false;
+            for (let i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                console.log(localStorage.getItem(key));
+                var addedProduct = JSON.parse(localStorage.getItem(key));
+                if(addedProduct._id === '<%= prodDetail.id %>'){
+                    added = true;
+                    break;
+                }
+            }
+            if(!added){
+                var num = 0;
+                while(localStorage.getItem(num) !== null){
+                    num++;
+                }
+                localStorage.setItem(num, '<%-JSON.stringify(prodDetail)%>');
+                console.log(localStorage)
+            }
+        })
+    </script>
