@@ -394,16 +394,17 @@ app.get("/customer/homepage/:id", async (req, res) => {
 });
 
 //ROUTE TO CATEGORY PAGE
-// app.get("/customer/homepage/category/:category", async (req, res) =>{
+// app.get("/customer/homepage/category/:category", async (req, res) => {
 //   try {
-//     const category = req.params.category;
+//     const customer = await Customer.findById(req.params.id);
+//     let category = req.params.category;
 //     const products = await Product.find({ category: category });
 //     res.render("customer-category", { products: products });
 //   } catch (error) {
 //     console.error(error);
 //     res.status(500).send("Error retrieving customer data.");
 //   }
-// })
+// });
 
 //ROUTE TO CART PAGE
 app.get("/customer/cart/", async (req, res) => {
@@ -421,12 +422,25 @@ app.get("/customer/cart/", async (req, res) => {
 app.get("/product/:id", async (req, res) => {
   try {
     let productId = req.params.id;
-    const customer = await Customer.findById(req.params.id); // Assuming you have a Customer model
+    const customer = await Customer.findById(req.params.id);
     const prodDetail = await Product.findById(productId);
     res.render("product", { prodDetail, customer });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error occured" });
   }
+});
+
+// Route to search page
+app.get("/search", (req, res) => {
+  const searchTerm = req.query["search-term"];
+  const regexPattern = new RegExp(searchTerm, "i");
+  const customer = Customer.findById(req.params.id);
+
+  Product.find({ name: { $regex: regexPattern } })
+    .then((products) => {
+      res.render("search", { products, customer });
+    })
+    .catch((error) => console.log(error.message));
 });
 
 app.listen(port, () => {

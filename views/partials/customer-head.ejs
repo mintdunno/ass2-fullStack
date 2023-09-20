@@ -32,8 +32,9 @@
         </div>
 
         <div class="d-flex align-items-center col gap-3">
-          <form class="w-100 me-3 search" role="search">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search" />
+          <form method="get" action="/search" class="w-100 me-3 search" role="search">
+            <input type="search" id="search-term" name="search-term" class="form-control" placeholder="Search..."
+              aria-label="Search" />
           </form>
           <div class="shopping">
             <div class="shoppingCart">
