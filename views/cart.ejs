@@ -17,23 +17,18 @@
                             <main>
                                 <div id="content-box">
                                     <div id="cart-box">
-                                        <div id="label-box">
-                                            <span>Item</span>
-                                            <span>Price</span>
-                                            <span>Action</span>
-                                        </div>
-                                        <div id="item-box">
+                                        <div id="content">
                                         </div>
                                     </div>
-                                    <div id="purchase-box">
+                                    <div id="proceed-purchase">
                                         
                                         <label id="total-price">Total price: </label>
-                                        <form action="/shoppingCart" method="post">
+                                        <form action="/" method="post">
                                             <input type="text" name="productList" style="display:none" id="product-list">
                                             <input type="text" name= "customerName" id ="customer-name-field"style="display:none">
                                             <input type="text" name="username" id="username-field" style="display:none">
                                             <input type="number" name="totalPrice" id ="total-price-field" style="display:none">
-                                            <button id="order-button" type="submit">Order</button>
+                                            <button id="btn-order" type="submit">Confirm</button>
                                         </form>
                                     </div>
                                 </div>
@@ -68,10 +63,10 @@
             var totalPrice = 0;
             var products = new Array();
             if(localStorage.length == 0){
-                document.querySelector('#item-box').innerText = "Your cart is empty";
-                document.querySelector('#item-box').style ="padding-top : 100px";
-                document.querySelector('#order-button').disabled = true;
-                document.querySelector('#order-button').style = "background-color:grey";
+                document.querySelector('#content').innerText = "Your cart is empty";
+                document.querySelector('#content').style ="padding-top : 100px";
+                document.querySelector('#btn-order').disabled = true;
+                document.querySelector('#btn-order').style = "background-color:grey";
             }
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
@@ -80,39 +75,39 @@
                 totalPrice += product.price;
                 const item = document.createElement('div');
                 const itemDisplay = document.createElement('div');
-                const itemImg = document.createElement('img');
-                const itemName = document.createElement('div');
+                const image = document.createElement('img');
+                const title = document.createElement('div');
                 const itemPrice = document.createElement('div')
                 const itemActionDisplay = document.createElement('div');
                 const itemAction = document.createElement('button');
-                item.setAttribute('class','item');
+                item.setAttribute('class','row item');
                 item.setAttribute('id', i);
-                itemDisplay.setAttribute('class','item-display');
+                itemDisplay.setAttribute('class','col-4 item-display');
                 //itemDisplay.setAttribute('id', i);
-                itemImg.setAttribute('class','item-image');
-                itemImg.setAttribute('alt', `Image of product ${product.name}`)
-                itemName.setAttribute('class','item-name');
-                itemPrice.setAttribute('class','item-price');
-                itemActionDisplay.setAttribute('class','action-display');
-                itemAction.setAttribute('class','delete-button red');
-                itemImg.src = product.image;
-                itemName.innerText = product.name;
-                itemPrice.innerText = '$' + product.price;
+                image.setAttribute('class','product-image');
+                image.setAttribute('alt', `Image of product ${product.name}`)
+                title.setAttribute('class','item-name');
+                itemPrice.setAttribute('class','col-4 d-flex align-items-center justify-content-center item-price');
+                itemActionDisplay.setAttribute('class','col-4 d-flex align-items-center justify-content-end action-display');
+                itemAction.setAttribute('class','btn-delete bg-danger rounded text-light');
+                image.src = product.image;
+                title.innerText = product.name;
+                itemPrice.innerText = product.price + 'đ';
                 itemAction.innerText = 'Delete';
                 itemAction.addEventListener('click', () =>{
                     localStorage.removeItem(key);
                     window.location.reload();
                 })
-                document.querySelector('#item-box').appendChild(item);
+                document.querySelector('#content').appendChild(item);
                 document.querySelectorAll('.item').item(i).appendChild(itemDisplay);
-                document.querySelectorAll('.item-display').item(i).appendChild(itemImg);
-                document.querySelectorAll('.item-display').item(i).appendChild(itemName);
+                document.querySelectorAll('.item-display').item(i).appendChild(image);
+                document.querySelectorAll('.item-display').item(i).appendChild(title);
                 document.querySelectorAll('.item').item(i).appendChild(itemPrice);
                 document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
                 document.querySelectorAll('.action-display').item(i).appendChild(itemAction);
-                products.push(product._id);
+                products.push(product.id);
             }
-            document.querySelector('#total-price').innerText = 'Total price: $' + totalPrice.toFixed(2); 
+            document.querySelector('#total-price').innerText = 'Total price: ' + totalPrice+'đ'; 
             document.querySelector('#total-price-field').value = totalPrice.toFixed(2);
             document.querySelector('#product-list').value = products;
             document.querySelector('#customer-name-field').value = "<%= customer.name %>";
