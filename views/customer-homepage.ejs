@@ -1,7 +1,7 @@
 <!-- Header for customer homepage -->
 <%- include('./partials/customer-head') %>
 
-<div class="mx-md-5">
+  <div class="mx-md-5">
     <!------------- Carousel --------------------->
     <div id="carouselExampleSlidesOnly" class="carousel slide pb-4" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -45,19 +45,23 @@
       <h1 class="p-3 fw-bold">Popular</h1>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         <!-- card 1 -->
-        <% products.forEach(product => { %>
+        <% products.forEach(product=> { %>
           <div class="col">
             <div class="card h-100">
-              <a class="stretched-link" href="/customer/homepage/<%= product.category  %>/<%= product._id %>"><img loading="lazy"
+              <a class="stretched-link" href="/product/<%= product._id %>"><img loading="lazy"
                   src="<%= product.image %>" class="card-img-top" alt="..."></a>
               <div class="card-body text-center">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text"><b><%= product.price %>&#8363;</b></p>
+                <h5 class="card-title">
+                  <%= product.name %>
+                </h5>
+                <p class="card-text"><b>
+                    <%= product.price %>&#8363;
+                  </b></p>
               </div>
             </div>
           </div>
 
-        <% }) %>
+          <% }) %>
       </div>
     </main>
     <!------------- Main section ends HERE --------------------->
@@ -79,11 +83,11 @@
     <p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
   </footer>
   <!------------- Footer section ends HERE --------------------->
-</div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-  crossorigin="anonymous"></script>
-</body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  </body>
 
-</html>
+  </html>

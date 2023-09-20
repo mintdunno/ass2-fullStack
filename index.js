@@ -300,12 +300,10 @@ app.post("/", async (req, res) => {
 app.get("/vendor/homepage/:id", async (req, res) => {
   const vendor = await Vendor.findById(req.params.id);
   const products = await Product.find({ vendorUsername: `${vendor.username}` });
-  Vendor.findById(req.params.id)
+  Vendor.findById(req.params.id);
   try {
     res.render("vendor-homepage", { vendor, products });
-  } catch (e) {
-
-  }
+  } catch (e) {}
   // .then((vendor) => {
   //   res.render("vendor-homepage", { vendor });
   // })
@@ -343,13 +341,12 @@ app.post("/vendor/products/add/", (req, res) => {
 // Edit Product
 app.get("/product/:vid/update/:pid", async (req, res) => {
   const vendor = await Vendor.findById(req.params.vid);
-  Product.findById(req.params.pid)
-    .then((product) => {
-      if (!product) {
-        return res.send("Not found any product matching the ID!");
-      }
-      res.render("update-product", { product, vendor });
-    })
+  Product.findById(req.params.pid).then((product) => {
+    if (!product) {
+      return res.send("Not found any product matching the ID!");
+    }
+    res.render("update-product", { product, vendor });
+  });
   //   .catch((error) => res.send(error));
 });
 
@@ -383,19 +380,6 @@ app.post("/vendor/profile/:id", async (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //ROUTE TO CUSTOMER HOMEPAGE
 app.get("/customer/homepage/:id", async (req, res) => {
   try {
@@ -426,18 +410,25 @@ app.get("/customer/cart/", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({}); // Assuming you have an Order model associated with customers
-    res.render('cart', { customer, products  });
+    res.render("cart", { customer, products });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving customer data.");
   }
 });
 
-
-
-
+// Route to detail page
+app.get("/product/:id", async (req, res) => {
+  try {
+    let productId = req.params.id;
+    const customer = await Customer.findById(req.params.id); // Assuming you have a Customer model
+    const prodDetail = await Product.findById(productId);
+    res.render("product", { prodDetail, customer });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error occured" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
-
