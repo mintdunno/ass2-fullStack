@@ -490,6 +490,19 @@ app.get("/search", (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
+//ROUTE TO SHIPPER HOMEPAGE
+app.get("/shipper/homepage/:id", async (req, res) => {
+  try {
+    const shipper = await Shipper.findById(req.params.id); 
+    const products = await Product.find({}); 
+
+    res.render("shipper-homepage", { shipper, products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving customer data.");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
