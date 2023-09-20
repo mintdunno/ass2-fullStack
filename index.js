@@ -393,6 +393,53 @@ app.get("/customer/homepage/:id", async (req, res) => {
   }
 });
 
+//Get customer profile
+app.get("/customer/homepage/profile/:id", async (req, res) => {
+  await Customer.findById(req.params.id)
+    .then((customer) => {
+      res.render("customer-profile", { customer });
+    })
+    .catch((error) => res.send(error));
+});
+
+//update customer profile
+app.post("/customer/homepage/profile/:id", async (req, res) => {
+  await Customer.findByIdAndUpdate(
+    { _id: req.params.id },
+
+    {
+      username: req.body.username,
+      name: req.body.fullname,
+      phone: req.body.phone,
+      email: req.body.email,
+      address: req.body.address,
+    },
+    { new: true }
+  )
+    .then(() => {
+      console.log("Customer information was succesfully added");
+      res.redirect(`/customer/homepage/${req.params.id}`);
+    })
+    .catch((error) => console.log(error.message));
+});
+
+// app.use(fileUpload());
+// app.post("/upload-profile-image", (req, res) => {
+//   if (!req.files || !req.files.profileImage) {
+//     return res.status(400).json({ error: "No file uploaded" });
+//   }
+
+//   const profileImage = req.files.profileImage;
+//   profileImage.mv(__dirname + "/uploads/" + profileImage.name, (err) => {
+//     if (err) {
+//       return res.status(500).json({ error: "Error uploading file" });
+//     }
+
+//     // File uploaded successfully
+//     return res.json({ message: "File uploaded successfully" });
+//   });
+// });
+
 //ROUTE TO CATEGORY PAGE
 // app.get("/customer/homepage/category/:category", async (req, res) => {
 //   try {
