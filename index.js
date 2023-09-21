@@ -8,6 +8,8 @@ const Customer = schema.Customer;
 const Vendor = schema.Vendor;
 const Shipper = schema.Shipper;
 const Product = schema.Product;
+const Order = schema.Order;
+const Hub = schema.Hub;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -464,6 +466,21 @@ app.get("/customer/cart/", async (req, res) => {
     res.status(500).send("Error retrieving customer data.");
   }
 });
+
+
+app.post("/customer/cart/", async (req, res) => {
+  var arr = req.body.productList.split(",");
+  req.body.productList = arr;
+  console.log(req.body);
+  req.body.state = 'active';
+  const order = new Order(req.body);
+  order.save()
+  randHub = await Hub.aggregate([{ "$sample": { "size": 1 } }])
+  console.log(randHub);
+  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } })
+  res.redirect("/")
+})
+
 
 // Route to detail page
 app.get("/product/:id", async (req, res) => {

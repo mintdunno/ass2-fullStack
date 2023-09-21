@@ -164,6 +164,31 @@ const productSchema = new mongoose.Schema({
   },
 });
 
+// Define order schema
+const orderSchema = new mongoose.Schema({
+  orderItems: [String],
+  customerAddress: String,
+  customerName: String,
+  totalPrice: Number,
+  status: {
+      type: String,
+      enum: ['active', 'shipped', 'canceled'],
+  },
+});
+
+// Define Hub schema
+const hubSchema = new mongoose.Schema({
+  name: String,
+  address: String,
+  shipperID: [String],
+  orderID: [String]
+});
+
+
+// Create Hub model
+const Hub = mongoose.model('Hub', hubSchema);
+// Create Order model
+const Order = mongoose.model('Order', orderSchema);
 // Create Customer model
 const Customer = mongoose.model("Customer", customerSchema);
 // Create Product model
@@ -174,4 +199,4 @@ const Vendor = mongoose.model("Vendor", vendorSchema);
 const Shipper = mongoose.model("Shipper", shipperSchema);
 
 // Export models
-module.exports = { Customer, Vendor, Shipper, Product };
+module.exports = { Customer, Vendor, Shipper, Product, Order, Hub };
