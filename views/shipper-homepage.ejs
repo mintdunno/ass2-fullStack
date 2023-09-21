@@ -1,142 +1,86 @@
 <%- include('./partials/shipper-head') %>
 
-<div class="p-3 p-lg-5  bg-dark container-fluid rounded">
-    <!-- For demo purpose -->
-    <div class="text-white text-center fw-bolder">
-        <h1 class="p-2">Delivery</h1>
-    </div>
+    <div class="p-3 p-lg-5  bg-dark container-fluid rounded">
+        <!-- For demo purpose -->
+        <div class="text-white text-center fw-bolder">
+            <h1 class="p-2">Delivery</h1>
+        </div>
 
-    <div class="row py-2 rounded fs-5">
-        <div
-            class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
-            <div>
+        <div class="row py-2 rounded fs-5">
+            <div
+                class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
+                <div>
 
-                <p>👤 Name</p>
-                <p>🤑 1.000.000</p>
-                <!-- <p>📞 0932131389</p> -->
+                    <p>👤 Name</p>
+                    <p>🤑 1.000.000</p>
+                    <!-- <p>📞 0932131389</p> -->
+                </div>
             </div>
-        </div>
-        <div class="col-md-7 bg-white text-dark d-flex align-items-center">
-            <div>
-                <p>🗺️ 702 Nguyen Van Linh, Tan Quy, District 7, Ho Chi Minh city</p>
-                <p>🛒 1 chicken, 2 cows, 5 dogs</p>
+            <div class="col-md-7 bg-white text-dark d-flex align-items-center">
+                <div>
+                    <p>🗺️ 702 Nguyen Van Linh, Tan Quy, District 7, Ho Chi Minh city</p>
+                    <p>🛒 1 chicken, 2 cows, 5 dogs</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
-            <form action="" id="delivery-form" method="post">
-                <h5 class="fw-bold">Status</h5>
-                <select class="form-select text-center" aria-label="Default select example"
-                    name="delivery-form">
-                    <option value="active" selected>Active</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="canceled">Canceled</option>
-                </select>
-                <button type="submit" class="btn btn-success w-100 my-2">Save
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row py-2 rounded fs-5">
-        <div
-            class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
-            <div>
-
-                <p>👤 Name</p>
-                <p>🤑 1.000.000</p>
-                <!-- <p>📞 0932131389</p> -->
+            <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
+                <form action="" id="delivery-form" method="post">
+                    <h5 class="fw-bold">Status</h5>
+                    <select class="form-select text-center" aria-label="Default select example" name="delivery-form">
+                        <option value="active" selected>Active</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="canceled">Canceled</option>
+                    </select>
+                    <button type="submit" class="btn btn-success w-100 my-2">Save
+                    </button>
+                </form>
             </div>
-        </div>
-        <div class="col-md-7 bg-white text-dark d-flex align-items-center">
-            <div>
-                <p>🗺️ 702 Nguyen Van Linh, Tan Quy, District 7, Ho Chi Minh city</p>
-                <p>🛒 1 chicken, 2 cows, 5 dogs</p>
-            </div>
-        </div>
-        <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
-            <form action="" id="delivery-form" method="post">
-                <h5 class="fw-bold">Status</h5>
-                <select class="form-select text-center" aria-label="Default select example"
-                    name="delivery-form">
-                    <option value="active" selected>Active</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="canceled">Canceled</option>
-                </select>
-                <button type="submit" class="btn btn-success w-100 my-2">Save
-                </button>
-            </form>
         </div>
     </div>
     <!-- Shopping cart table -->
-</div>
-
-<div class="row py-5 p-4 bg-white rounded shadow-sm">
-    <!-- Oder Product Sumary is Here  -->
-    <div class="mb-4 px-4 rounded ">
-        <p class="fw-bold py-2 text-uppercase mb-0 text-center fs-5">Shipping
-            Information
-        </p>
     </div>
-    <form action="" id="order-form" method="post">
 
-        <div class="row mb-3">
-            <div class="col-sm-6 ">
-                <p class=" text-small fw-bold">Customer Name</p>
-                <input class="form-control" value="" type="text" name="customername"
-                    placeholder="Enter Receiver Name">
-            </div>
-            <div class="col-sm-6 ">
-                <p class=" text-small fw-bold ">Phone </p>
-                <input class="form-control" value="" type="text" name="phonenumber"
-                    placeholder="Enter Phone Number">
-            </div>
-
+    <div class="row py-5 p-4 bg-white rounded shadow-sm">
+        <!-- Oder Product Sumary is Here  -->
+        <div class="mb-4 px-4 rounded ">
+            <p class="fw-bold py-2 text-uppercase mb-0 text-center fs-5">Shipping
+                Information
+            </p>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6 ">
-                <p class=" text-small fw-bold">Customer Address</p>
-                <input class="form-control input-lg" type="text" value="" name="address"
-                    placeholder="Enter Your Address" required>
+        <form action="" id="order-form" method="post">
+
+            <div class="row mb-3">
+                <div class="col-sm-6 ">
+                    <p class=" text-small fw-bold">Customer Name</p>
+                    <input class="form-control" value="" type="text" name="customername"
+                        placeholder="Enter Receiver Name">
+                </div>
+                <div class="col-sm-6 ">
+                    <p class=" text-small fw-bold ">Phone </p>
+                    <input class="form-control" value="" type="text" name="phonenumber"
+                        placeholder="Enter Phone Number">
+                </div>
+
             </div>
-            <div class="col-sm-6">
-                <p class=" text-small fw-bold">Payment Method</p>
-                <select class="form-select" aria-label="Default select example" required>
-                    <option value="cod">COD (Cash on delivery)</option>
-                    <option value="banking">Banking</option>
-                    <option value="momo">Momo</option>
-                </select>
+            <div class="row mb-3">
+                <div class="col-sm-6 ">
+                    <p class=" text-small fw-bold">Customer Address</p>
+                    <input class="form-control input-lg" type="text" value="" name="address"
+                        placeholder="Enter Your Address" required>
+                </div>
+                <div class="col-sm-6">
+                    <p class=" text-small fw-bold">Payment Method</p>
+                    <select class="form-select" aria-label="Default select example" required>
+                        <option value="cod">COD (Cash on delivery)</option>
+                        <option value="banking">Banking</option>
+                        <option value="momo">Momo</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <button type="reset" class="btn btn-dark">Reset</button>
-        <button type="submit" class="btn btn-dark">Submit</button>
-    </form>
+            <button type="reset" class="btn btn-dark">Reset</button>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
 
-</div>
+    </div>
 
-</div>
-</div>
-</div>
-<footer class="py-3 mt-4">
-<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-    <li class="nav-item"><a href="privacy.html" class="nav-link px-2 text-body-secondary">Privacy Policy</a>
-    </li>
-    <li class="nav-item"><a href="operatingregulations.html" class="nav-link px-2 text-body-secondary">Operating
-            Regulations</a>
-    </li>
-    <li class="nav-item"><a href="shipping.html" class="nav-link px-2 text-body-secondary">Shipping
-            Policy</a>
-    </li>
-    <li class="nav-item"><a href="returnandrefund.html" class="nav-link px-2 text-body-secondary">Return and
-            Refund
-            Policy</a></li>
-</ul>
-<p class="text-center text-body-secondary">© 2023 TheCornerStore</p>
-</footer>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <!-- Footer section -->
+<%- include('./partials/shipper-footer') %>

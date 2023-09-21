@@ -474,6 +474,36 @@ app.get("/shipper/homepage/:id", async (req, res) => {
   }
 });
 
+//Get shipper profile
+app.get("/shipper/homepage/profile/:id", async (req, res) => {
+  await Shipper.findById(req.params.id)
+    .then((shipper) => {
+      res.render("shipper-profile", { shipper });
+    })
+    .catch((error) => res.send(error));
+});
+
+//update shipper profile
+app.post("/shipper/homepage/profile/:id", async (req, res) => {
+  await Shipper.findByIdAndUpdate(
+    { _id: req.params.id },
+
+    {
+      username: req.body.username,
+      name: req.body.fullname,
+      phone: req.body.phone,
+      email: req.body.email,
+    },
+    { new: true }
+  )
+    .then(() => {
+      console.log("Shipper information was succesfully added");
+      res.redirect(`/shipper/homepage/${req.params.id}`);
+    })
+    .catch((error) => console.log(error.message));
+});
+
+
 //ROUTE TO CUSTOMER PRIVACY PAGE
 app.get("/customer/privacy", async (req, res) => {
   const customer = await Customer.findById(req.params.id);
