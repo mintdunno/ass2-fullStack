@@ -65,8 +65,8 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        <button class="add-to-cart" type="button">Add to Cart</button>
-                        <div class="add-to-cart-confirm" style="display: none;">Successfully added to cart</div>
+                        <button class="btn-add-cart" type="button">Add to Cart</button>
+                        <div class="btn-add-cart-status" style="display: none;">Added to your cart</div>
                         <a href="/customer/cart/"><button class="btn w-100 border" type="button">Buy now</button></a>
                     </div>
                 </div>
@@ -136,9 +136,9 @@
     </html>
 
     <script>
-        const addToCart = document.querySelector('.add-to-cart');
+        const addToCart = document.querySelector('.btn-add-cart');
         addToCart.addEventListener('click', ()=>{
-            document.querySelector('.add-to-cart-confirm').style = "display:flex";
+            document.querySelector('.btn-add-cart-status').style = "display:flex text-align-center";
             var added = false;
             for (let i = 0; i < localStorage.length; i++) {
                 var key = localStorage.key(i);

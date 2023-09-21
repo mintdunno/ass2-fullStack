@@ -23,12 +23,13 @@
                                     <div id="proceed-purchase">
                                         
                                         <label id="total-price">Total price: </label>
-                                        <form action="/" method="post">
-                                            <input type="text" name="productList" style="display:none" id="product-list">
-                                            <input type="text" name= "customerName" id ="customer-name-field"style="display:none">
-                                            <input type="text" name="username" id="username-field" style="display:none">
+                                        <form action="/customer/cart/" method="post">
+                                            <input type="text" name="orderItems" style="display:none" id="order-items">
+                                            <input type="text" name= "customerName" id ="customerName"style="display:none">
+                                            <input type="text" name="username" id="username" style="display:none">
+                                            <input type="text" name="CustomerAddress" id="customerAddress" style="display:none">
                                             <input type="number" name="totalPrice" id ="total-price-field" style="display:none">
-                                            <button id="btn-order" type="submit">Confirm</button>
+                                            <a href="/customer/homepage/65095a753f6eb6f0338282b3"><button  id="btn-order" type="submit">Confirm</button></a>
                                         </form>
                                     </div>
                                 </div>
@@ -64,7 +65,7 @@
             var products = new Array();
             if(localStorage.length == 0){
                 document.querySelector('#content').innerText = "Your cart is empty";
-                document.querySelector('#content').style ="padding-top : 100px";
+                document.querySelector('#content').style ="padding: 50px";
                 document.querySelector('#btn-order').disabled = true;
                 document.querySelector('#btn-order').style = "background-color:grey";
             }
@@ -77,7 +78,7 @@
                 const itemDisplay = document.createElement('div');
                 const image = document.createElement('img');
                 const title = document.createElement('div');
-                const itemPrice = document.createElement('div')
+                const itemPrice = document.createElement('div');
                 const itemActionDisplay = document.createElement('div');
                 const itemAction = document.createElement('button');
                 item.setAttribute('class','row item');
@@ -90,6 +91,8 @@
                 itemPrice.setAttribute('class','col-4 d-flex align-items-center justify-content-center item-price');
                 itemActionDisplay.setAttribute('class','col-4 d-flex align-items-center justify-content-end action-display');
                 itemAction.setAttribute('class','btn-delete bg-danger rounded text-light');
+
+                // Image Adding
                 image.src = product.image;
                 title.innerText = product.name;
                 itemPrice.innerText = product.price + 'đ';
@@ -109,15 +112,15 @@
             }
             document.querySelector('#total-price').innerText = 'Total price: ' + totalPrice+'đ'; 
             document.querySelector('#total-price-field').value = totalPrice.toFixed(2);
-            document.querySelector('#product-list').value = products;
-            document.querySelector('#customer-name-field').value = "<%= customer.name %>";
-            document.querySelector('#address-field').value = "<%= customer.name %>";
-            document.querySelector('#username-field').value = "<%= customer.name %>"
+            document.querySelector('#order-items').value = products;
+            document.querySelector('#customerName').value = "<%= customer.fullname %>";
+            document.querySelector('#customerAddress').value = "<%= customer.address %>";
+            document.querySelector('#username').value = "<%= customer.username %>"          
         }
     
         window.onsubmit = function clearLocalStorage(){
             localStorage.clear();
-            window.alert("Order successful!");
+            window.alert("Thank you for your order");
         }
     </script>
 </body>
