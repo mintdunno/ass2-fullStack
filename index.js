@@ -465,6 +465,34 @@ app.get("/customer/return", async (req, res) => {
   res.render("customer-return", { customer });
 });
 
+//ROUTE TO SHIPPER PRIVACY PAGE
+app.get("/shipper/privacy", async (req, res) => {
+  const shipper = await Shipper.findById(req.params.id);
+
+  res.render("shipper-privacy", { shipper });
+});
+
+//ROUTE TO SHIPPER OPERATING PAGE
+app.get("/shipper/operating", async (req, res) => {
+  const shipper = await Shipper.findById(req.params.id);
+
+  res.render("shipper-operating", { shipper });
+});
+
+//ROUTE TO SHIPPER SHIPPING PAGE
+app.get("/shipper/shipping", async (req, res) => {
+  const shipper = await Shipper.findById(req.params.id);
+
+  res.render("shipper-shipping", { shipper });
+});
+
+//ROUTE TO SHIPPER RETURN PAGE
+app.get("/shipper/return", async (req, res) => {
+  const shipper = await Shipper.findById(req.params.id);
+
+  res.render("shipper-return", { shipper });
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
