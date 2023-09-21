@@ -13,7 +13,7 @@ const Hub = schema.Hub;
 
 //Use Routes
 // Vendor Route
-const vendorRoute = require('./routes/vendor')
+const vendorRoute = require("./routes/vendor");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -145,10 +145,9 @@ app.post("/customer/register", async (req, res) => {
 
     if (errors.length > 0) {
       return res.render("customer-register", {
-        errors
+        errors,
       });
     }
-
 
     // Create Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -222,7 +221,7 @@ app.post("/vendor/register", async (req, res) => {
 
     if (errors.length > 0) {
       return res.render("vendor-register", {
-        errors
+        errors,
       });
     }
 
@@ -288,7 +287,7 @@ app.post("/shipper/register", async (req, res) => {
 
     if (errors.length > 0) {
       return res.render("shipper-register", {
-        errors
+        errors,
       });
     }
 
@@ -317,10 +316,9 @@ app.post("/shipper/register", async (req, res) => {
   }
 });
 
-
 // Vendor Route part
 // Route for Vendor homepage
-app.use('/vendor', vendorRoute);
+app.use("/vendor", vendorRoute);
 
 //ROUTE TO CUSTOMER HOMEPAGE
 app.get("/customer/homepage/:id", async (req, res) => {
@@ -377,20 +375,19 @@ app.get("/customer/cart/", async (req, res) => {
   }
 });
 
-// Rout to cart
+// Cart page post
 app.post("/customer/cart/", async (req, res) => {
   var arr = req.body.orderItems.split(",");
   req.body.orderItems = arr;
   console.log(req.body);
-  req.body.state = 'active';
+  req.body.state = "active";
   const order = new Order(req.body);
-  order.save()
-  randHub = await Hub.aggregate([{ "$sample": { "size": 1 } }])
+  order.save();
+  randHub = await Hub.aggregate([{ $sample: { size: 1 } }]);
   console.log(randHub);
-  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } })
-  res.redirect("/")
-})
-
+  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } });
+  res.redirect("/");
+});
 
 // Route to detail page
 app.get("/product/:id", async (req, res) => {
@@ -521,7 +518,6 @@ app.post("/shipper/homepage/profile/:id", async (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
-
 //ROUTE TO CUSTOMER PRIVACY PAGE
 app.get("/customer/privacy", async (req, res) => {
   const customer = await Customer.findById(req.params.id);
@@ -549,7 +545,6 @@ app.get("/customer/return", async (req, res) => {
 
   res.render("customer-return", { customer });
 });
-
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
