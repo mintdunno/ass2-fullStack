@@ -45,7 +45,7 @@ const vendorSchema = new Schema(
   {
     fullName: String,
 
-    bName: String,
+    bName: { type: String, required: true, unique: true },
 
     email: {
       type: String,
@@ -57,7 +57,7 @@ const vendorSchema = new Schema(
       require: true,
     },
 
-    address: String,
+    address: { type: String, required: true, unique: true, unique: true },
     username: {
       type: String,
       required: true,
@@ -171,8 +171,8 @@ const orderSchema = new mongoose.Schema({
   customerName: String,
   totalPrice: Number,
   status: {
-      type: String,
-      enum: ['active', 'shipped', 'canceled'],
+    type: String,
+    enum: ['active', 'shipped', 'canceled'],
   },
 });
 

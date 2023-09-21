@@ -124,6 +124,18 @@ app.post("/vendor/register", async (req, res) => {
     if (existedPhone) {
       errors.push("This phone was taken !!");
     }
+    //Check if bussiness name of customer was taken
+    const existedBName = await Vendor.findOne({ bName });
+    if (existedBName) {
+      errors.push("This bussiness name was taken !!");
+    }
+
+    const existedAddress = await Vendor.findOne({ address });
+    if (existedAddress) {
+      errors.push("This bussiness address  was taken !!");
+    }
+
+
 
     if (errors.length > 0) {
       return res.render("vendor-register", {
