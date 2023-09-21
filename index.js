@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
   res.render("login-page");
 });
 
-var vid = String;
 
 // For customer
 app.get("/customer/register", (req, res) => {
@@ -261,7 +260,7 @@ app.post("/", async (req, res) => {
       }
 
       //Access homepage by ID
-      vid = vendor._id;
+      const vid = vendor._id;
       res.redirect(`/vendor/homepage/${vendor._id}`);
     }
 
@@ -300,14 +299,13 @@ app.post("/", async (req, res) => {
 app.get("/vendor/homepage/:id", async (req, res) => {
   const vendor = await Vendor.findById(req.params.id);
   const products = await Product.find({ vendorUsername: `${vendor.username}` });
-  Vendor.findById(req.params.id);
+  Vendor.findById(req.params.id)
   try {
     res.render("vendor-homepage", { vendor, products });
-  } catch (e) {}
-  // .then((vendor) => {
-  //   res.render("vendor-homepage", { vendor });
-  // })
-  // .catch((error) => res.send(error));
+  } catch (e) {
+    console.error(error);
+    res.status(501).json({ error: "Server error" });
+  }
 });
 
 //Get add product page
@@ -320,6 +318,7 @@ app.get("/vendor/addproduct/:id/", (req, res) => {
 });
 // CREATE - Create a new products
 app.post("/vendor/products/add/", (req, res) => {
+  const vid = req.body.vendorId
   const product = new Product({
     name: req.body.productName,
     price: req.body.price,
@@ -341,13 +340,38 @@ app.post("/vendor/products/add/", (req, res) => {
 // Edit Product
 app.get("/product/:vid/update/:pid", async (req, res) => {
   const vendor = await Vendor.findById(req.params.vid);
-  Product.findById(req.params.pid).then((product) => {
-    if (!product) {
-      return res.send("Not found any product matching the ID!");
-    }
-    res.render("update-product", { product, vendor });
-  });
-  //   .catch((error) => res.send(error));
+  Product.findById(req.params.pid)
+    .then((product) => {
+      if (!product) {
+        return res.send("The product doesn't exist");
+      }
+      res.render("update-product", { product, vendor });
+    })
+});
+
+// Delete Product
+// DELETE - Show delete product form
+app.get("/product/:vid/delete/:pid", async (req, res) => {
+  const vendor = await Vendor.findById(req.params.vid);
+  Product.findById(req.params.pid)
+    .then((product) => {
+      if (!product) {
+        return res.send("The product doesn't exist");
+      }
+      res.render("delete-product", { product, vendor });
+    })
+    .catch((error) => res.send(error));
+});
+// DELETE - Delete a product by ID
+app.post("/product/:id/delete", (req, res) => {
+  Product.findByIdAndDelete(req.params.id)
+    .then((product) => {
+      if (!product) {
+        return res.send("The product doesn't exist");
+      }
+      res.redirect("/products");
+    })
+    .catch((error) => res.send(error));
 });
 
 //get vendor profile
@@ -358,6 +382,7 @@ app.get("/vendor/profile/:id", async (req, res) => {
     })
     .catch((error) => res.send(error));
 });
+
 //update vendor profile
 // Bug when update image
 app.post("/vendor/profile/:id", async (req, res) => {
@@ -366,7 +391,7 @@ app.post("/vendor/profile/:id", async (req, res) => {
 
     {
       username: req.body.username,
-      businessName: req.body.bName,
+      bName: req.body.bName,
       phone: req.body.phone,
       email: req.body.email,
       address: req.body.address,
@@ -493,8 +518,8 @@ app.get("/search", (req, res) => {
 //ROUTE TO SHIPPER HOMEPAGE
 app.get("/shipper/homepage/:id", async (req, res) => {
   try {
-    const shipper = await Shipper.findById(req.params.id); 
-    const products = await Product.find({}); 
+    const shipper = await Shipper.findById(req.params.id);
+    const products = await Product.find({});
 
     res.render("shipper-homepage", { shipper, products });
   } catch (error) {
