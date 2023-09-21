@@ -14,7 +14,7 @@ function isValidPassword(password) {
 }
 
 function isValidPhone(phone) {
-  const regex = /^\d{9,10}$/;
+  const regex = /^\d{9,11}$/;
   return regex.test(phone);
 }
 const username = document.getElementById("username");
@@ -37,7 +37,7 @@ form.addEventListener("submit", (e) => {
   }
 
   if (!isValidPhone(phone.value)) {
-    messages.push("Wrong phone format (9-10 characters)");
+    messages.push("Wrong phone format (9-11 characters)");
   }
 
   if (messages.length > 0) {
