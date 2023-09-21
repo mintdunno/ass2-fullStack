@@ -1,7 +1,7 @@
 <!-- Header for vendor -->
 <%- include('./partials/vendor-head') %>
 
-    <h2 class="text-center m-5 fw-bolder">Hello, <%= vendor.username %>
+    <h2 class="text-center m-5 fw-bolder">Hello, <%= vendor.fullName %>
     </h2>
     <div class="container shadow-lg p-3 mt-4">
         <h3 class="text-center">Your products</h3>
@@ -33,7 +33,7 @@
                                 <div>
                                     <!-- Create Button -->
                                     <!-- link to edit page -->
-                                    <a href="/product/<%= vendor.id %>/update/<%= product.id %>">
+                                    <a href="/vendor/product/<%= vendor.id %>/update/<%= product.id %>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                             <path
@@ -46,7 +46,8 @@
                                 <div>
                                     <!-- Delete button -->
                                     <!-- Link to delete mongose -->
-                                    <a href="vendor/product/<%= product._id %>/delete" class="text-danger">
+                                    <a href="/vendor/product/<%= vendor.id %>/delete/<%= product.id %>"
+                                        class="text-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path

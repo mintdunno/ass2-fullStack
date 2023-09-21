@@ -11,6 +11,10 @@ const Product = schema.Product;
 const Order = schema.Order;
 const Hub = schema.Hub;
 
+//Use Routes
+// Vendor Route
+const vendorRoute = require('./routes/vendor')
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(fileUpload());
@@ -298,114 +302,7 @@ app.post("/", async (req, res) => {
 
 // Vendor Route part
 // Route for Vendor homepage
-app.get("/vendor/homepage/:id", async (req, res) => {
-  const vendor = await Vendor.findById(req.params.id);
-  const products = await Product.find({ vendorUsername: `${vendor.username}` });
-  Vendor.findById(req.params.id)
-  try {
-    res.render("vendor-homepage", { vendor, products });
-  } catch (e) {
-    console.error(error);
-    res.status(501).json({ error: "Server error" });
-  }
-});
-
-//Get add product page
-app.get("/vendor/addproduct/:id/", (req, res) => {
-  Vendor.findById(req.params.id)
-    .then((vendor) => {
-      res.render("addProduct", { vendor });
-    })
-    .catch((error) => res.send(error));
-});
-// CREATE - Create a new products
-app.post("/vendor/products/add/", (req, res) => {
-  const vid = req.body.vendorId
-  const product = new Product({
-    name: req.body.productName,
-    price: req.body.price,
-    description: req.body.description,
-    amount: req.body.amount,
-    category: req.body.productType,
-    vendorUsername: req.body.vendorUsername,
-    image: {
-      data: req.files.productPIC.data,
-      mimeType: req.files.productPIC.mimetype,
-    },
-  });
-  product
-    .save()
-    .then(() => res.redirect(`/vendor/homepage/${vid}`))
-    .catch((error) => res.send(error));
-});
-
-// Edit Product
-app.get("/product/:vid/update/:pid", async (req, res) => {
-  const vendor = await Vendor.findById(req.params.vid);
-  Product.findById(req.params.pid)
-    .then((product) => {
-      if (!product) {
-        return res.send("The product doesn't exist");
-      }
-      res.render("update-product", { product, vendor });
-    })
-});
-
-// Delete Product
-// DELETE - Show delete product form
-app.get("/product/:vid/delete/:pid", async (req, res) => {
-  const vendor = await Vendor.findById(req.params.vid);
-  Product.findById(req.params.pid)
-    .then((product) => {
-      if (!product) {
-        return res.send("The product doesn't exist");
-      }
-      res.render("delete-product", { product, vendor });
-    })
-    .catch((error) => res.send(error));
-});
-// DELETE - Delete a product by ID
-app.post("/product/:id/delete", (req, res) => {
-  Product.findByIdAndDelete(req.params.id)
-    .then((product) => {
-      if (!product) {
-        return res.send("The product doesn't exist");
-      }
-      res.redirect("/products");
-    })
-    .catch((error) => res.send(error));
-});
-
-//get vendor profile
-app.get("/vendor/profile/:id", async (req, res) => {
-  await Vendor.findById(req.params.id)
-    .then((vendor) => {
-      res.render("vendor-profile", { vendor });
-    })
-    .catch((error) => res.send(error));
-});
-
-//update vendor profile
-// Bug when update image
-app.post("/vendor/profile/:id", async (req, res) => {
-  await Vendor.findByIdAndUpdate(
-    { _id: req.params.id },
-
-    {
-      username: req.body.username,
-      bName: req.body.bName,
-      phone: req.body.phone,
-      email: req.body.email,
-      address: req.body.address,
-    },
-    { new: true }
-  )
-    .then(() => {
-      console.log("Vendor information was succesfully added");
-      res.redirect(`/vendor/homepage/${req.params.id}`);
-    })
-    .catch((error) => console.log(error.message));
-});
+app.use('/vendor', vendorRoute);
 
 //ROUTE TO CUSTOMER HOMEPAGE
 app.get("/customer/homepage/:id", async (req, res) => {
@@ -507,7 +404,7 @@ app.get("/search", (req, res) => {
 // ROUTE TO GAMES AND TOYS PAGE
 app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id); 
+    const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Games & Toys" });
     res.render("customer-category", { products, category: "Games & Toys" });
   } catch (error) {
@@ -519,7 +416,7 @@ app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
 // ROUTE TO Furniture PAGE
 app.get("/customer/homepage/category/furniture", async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id); 
+    const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Furniture" });
     res.render("customer-category", { products, category: "Furniture" });
   } catch (error) {
@@ -531,7 +428,7 @@ app.get("/customer/homepage/category/furniture", async (req, res) => {
 // ROUTE TO Fashion PAGE
 app.get("/customer/homepage/category/fashion", async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id); 
+    const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Fashion" });
     res.render("customer-category", { products, category: "Fashion" });
   } catch (error) {
@@ -543,7 +440,7 @@ app.get("/customer/homepage/category/fashion", async (req, res) => {
 // ROUTE TO Accessories PAGE
 app.get("/customer/homepage/category/accessories", async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id); 
+    const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Accessories" });
     res.render("customer-category", { products, category: "Accessories" });
   } catch (error) {
@@ -555,7 +452,7 @@ app.get("/customer/homepage/category/accessories", async (req, res) => {
 // ROUTE TO Others PAGE
 app.get("/customer/homepage/category/others", async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id); 
+    const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Others" });
     res.render("customer-category", { products, category: "Others" });
   } catch (error) {
