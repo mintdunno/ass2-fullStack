@@ -298,14 +298,14 @@ app.post("/customer/cart/", async (req, res) => {
   var arr = req.body.orderItems.split(",");
   req.body.orderItems = arr;
   console.log(req.body);
-  req.body.state = "active";
+  req.body.state = 'active';
   const order = new Order(req.body);
-  order.save();
-  randHub = await Hub.aggregate([{ $sample: { size: 1 } }]);
+  order.save()
+  randHub = await Hub.aggregate([{ "$sample": { "size": 1 } }])
   console.log(randHub);
-  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } });
-  res.redirect("/");
-});
+  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } })
+  res.redirect("/")
+})
 
 // Route to detail page
 app.get("/product/:id", async (req, res) => {
