@@ -43,7 +43,7 @@ const customerSchema = new Schema(
 
 const vendorSchema = new Schema(
   {
-    fullName: String,
+    fullname: String,
 
     bName: { type: String, required: true, unique: true },
 
@@ -57,7 +57,7 @@ const vendorSchema = new Schema(
       require: true,
     },
 
-    address: { type: String, required: true, unique: true, unique: true },
+    address: { type: String, required: true, unique: true },
     username: {
       type: String,
       required: true,
@@ -120,11 +120,11 @@ const shipperSchema = new mongoose.Schema(
 // There is a strange bug that doesn't allow storing 5 elements in enum
 const productCategory = [
   "Game & Toy",
-  "Household appliances",
-  "Books",
+  "Furniture",
+  "Fashion",
   "Accessories",
-  "Watches",
-  "other",
+  "Others",
+  "nothing",
 ];
 const productSchema = new mongoose.Schema({
   //Name of the product

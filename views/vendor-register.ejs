@@ -6,7 +6,7 @@
 
                 <div class="row mb-3">
                     <div class="col-md-6 text-center" id="logo">
-                        <a href="/vendor/register"><img class="mb-2 text-center" src="/img/logo.svg" alt=""
+                        <a href="/register/vendor"><img class="mb-2 text-center" src="/img/logo.svg" alt=""
                                 width="300px"></a>
                     </div>
                     <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -18,11 +18,11 @@
                         <ul class="nav nav-tabs card-header-tabs">
                             <!-- Customer res -->
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="true" href="/customer/register">Customer</a>
+                                <a class="nav-link" aria-current="true" href="/register/customer">Customer</a>
                             </li>
                             <!-- Shipper res -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/shipper/register">Shipper</a>
+                                <a class="nav-link" href="/register/shipper">Shipper</a>
                             </li>
                             <!-- Vendor res -->
                             <li class="nav-item">
@@ -30,7 +30,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form action="/vendor/register" method="post" id="form" enctype="multipart/form-data">
+                    <form action="/register/vendor" method="post" id="form" enctype="multipart/form-data">
                         <div class="card-body">
                             <!-- Full Name -->
                             <div class="form-floating mb-3">
@@ -41,9 +41,9 @@
 
                             <!-- Last Name -->
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="lastName" name="lastName"
-                                    placeholder="Last Name" required="">
-                                <label for="lastName">Business Name</label>
+                                <input type="text" class="form-control" id="bName" name="bName" placeholder="bName"
+                                    required="">
+                                <label for="bName">Business Name</label>
                             </div>
                             <!-- Last Name -->
 
@@ -80,7 +80,7 @@
                             <!-- Username Section -->
 
                             <!-- Password Section -->
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 mb-5">
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password" required="">
                                 <label for="password">Password</label>
@@ -89,34 +89,33 @@
 
                             <!-- Display Errot -->
                             <div id="error" style="color: red !important;"></div>
-                            <%- include('./partials/errorMsg.ejs') %>
+                            <div><%- include('./partials/errorMsg.ejs') %></div>
 
-                                <!-- Picture setup -->
-                                <div class="image-preview-container">
-                                    <div class="preview">
-                                        <img id="preview-selected-image">
-                                    </div>
-                                    <label for="file">Upload Image</label>
-                                    <input type="file" id="file" name="profilePicture" accept="image/*" required
-                                        onchange="previewImage(event);" />
+                            <!-- Picture setup -->
+                            <div class="image-preview-container">
+                                <div class="preview">
+                                    <img id="preview-selected-image">
                                 </div>
+                                <label for="file">Upload Image</label>
+                                <input type="file" id="file" name="profilePicture" accept="image/*" required
+                                    onchange="previewImage(event);" />
+                            </div>
 
-                                <!-- checkbox -->
-                                <div class="form-check ">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        required>
-                                    <label class="form-check-label d-flex" for="flexCheckDefault">
-                                        I have read and agree to the terms and conditions
-                                    </label>
-                                </div>
-                                <!-- checkbox -->
+                            <!-- checkbox -->
+                            <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                <label class="form-check-label d-flex" for="flexCheckDefault">
+                                    I have read and agree to the terms and conditions
+                                </label>
+                            </div>
+                            <!-- checkbox -->
 
 
-                                <!-- Submit section -->
-                                <button class="btn btn-dark w-100 my-4 py-2" type="submit">Sign Up</button>
-                                <!-- Submit section -->
+                            <!-- Submit section -->
+                            <button class="btn btn-dark w-100 my-4 py-2" type="submit">Sign Up</button>
+                            <!-- Submit section -->
 
-                                <p>Already have an account? <a href="/">Login</a></p>
+                            <p>Already have an account? <a href="/">Login</a></p>
                     </form>
                 </div>
         </div>
