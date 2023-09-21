@@ -361,8 +361,8 @@ app.get("/customer/cart/", async (req, res) => {
 
 // Rout to cart
 app.post("/customer/cart/", async (req, res) => {
-  var arr = req.body.productList.split(",");
-  req.body.productList = arr;
+  var arr = req.body.orderItems.split(",");
+  req.body.orderItems = arr;
   console.log(req.body);
   req.body.state = 'active';
   const order = new Order(req.body);
