@@ -11,8 +11,7 @@ const Product = schema.Product;
 const Order = schema.Order;
 const Hub = schema.Hub;
 
-//Use Routes
-// Vendor Route
+// Routers
 const vendorRoute = require("./routes/vendor");
 const loginRoute = require("./routes/login");
 
