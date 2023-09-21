@@ -450,36 +450,6 @@ app.post("/customer/homepage/profile/:id", async (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
-// app.use(fileUpload());
-// app.post("/upload-profile-image", (req, res) => {
-//   if (!req.files || !req.files.profileImage) {
-//     return res.status(400).json({ error: "No file uploaded" });
-//   }
-
-//   const profileImage = req.files.profileImage;
-//   profileImage.mv(__dirname + "/uploads/" + profileImage.name, (err) => {
-//     if (err) {
-//       return res.status(500).json({ error: "Error uploading file" });
-//     }
-
-//     // File uploaded successfully
-//     return res.json({ message: "File uploaded successfully" });
-//   });
-// });
-
-//ROUTE TO CATEGORY PAGE
-// app.get("/customer/homepage/category/:category", async (req, res) => {
-//   try {
-//     const customer = await Customer.findById(req.params.id);
-//     let category = req.params.category;
-//     const products = await Product.find({ category: category });
-//     res.render("customer-category", { products: products });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Error retrieving customer data.");
-//   }
-// });
-
 //ROUTE TO CART PAGE
 app.get("/customer/cart/", async (req, res) => {
   try {
@@ -492,7 +462,7 @@ app.get("/customer/cart/", async (req, res) => {
   }
 });
 
-
+// Rout to cart
 app.post("/customer/cart/", async (req, res) => {
   var arr = req.body.productList.split(",");
   req.body.productList = arr;
@@ -532,6 +502,68 @@ app.get("/search", (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
+// Route to category page
+// THERE ARE BUGS IN customer-category that can not route
+// ROUTE TO GAMES AND TOYS PAGE
+app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); 
+    const products = await Product.find({ category: "Games & Toys" });
+    res.render("customer-category", { products, category: "Games & Toys" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+// ROUTE TO Furniture PAGE
+app.get("/customer/homepage/category/furniture", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); 
+    const products = await Product.find({ category: "Furniture" });
+    res.render("customer-category", { products, category: "Furniture" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+// ROUTE TO Fashion PAGE
+app.get("/customer/homepage/category/fashion", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); 
+    const products = await Product.find({ category: "Fashion" });
+    res.render("customer-category", { products, category: "Fashion" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+// ROUTE TO Accessories PAGE
+app.get("/customer/homepage/category/accessories", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); 
+    const products = await Product.find({ category: "Accessories" });
+    res.render("customer-category", { products, category: "Accessories" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+// ROUTE TO Others PAGE
+app.get("/customer/homepage/category/others", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id); 
+    const products = await Product.find({ category: "Others" });
+    res.render("customer-category", { products, category: "Others" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
 //ROUTE TO SHIPPER HOMEPAGE
 app.get("/shipper/homepage/:id", async (req, res) => {
   try {
@@ -544,6 +576,35 @@ app.get("/shipper/homepage/:id", async (req, res) => {
     res.status(500).send("Error retrieving customer data.");
   }
 });
+
+//ROUTE TO CUSTOMER PRIVACY PAGE
+app.get("/customer/privacy", async (req, res) => {
+  const customer = await Customer.findById(req.params.id);
+
+  res.render("customer-privacy", { customer });
+});
+
+//ROUTE TO CUSTOMER OPERATING PAGE
+app.get("/customer/operating", async (req, res) => {
+  const customer = await Customer.findById(req.params.id);
+
+  res.render("customer-operating", { customer });
+});
+
+//ROUTE TO CUSTOMER SHIPPING PAGE
+app.get("/customer/shipping", async (req, res) => {
+  const customer = await Customer.findById(req.params.id);
+
+  res.render("customer-shipping", { customer });
+});
+
+//ROUTE TO CUSTOMER RETURN PAGE
+app.get("/customer/return", async (req, res) => {
+  const customer = await Customer.findById(req.params.id);
+
+  res.render("customer-return", { customer });
+});
+
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
