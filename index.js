@@ -27,14 +27,14 @@ app.use("/", loginRoute);
 
 //Sign UP section
 // For customer
-app.get("/customer/register", (req, res) => {
+app.get("/register/customer", (req, res) => {
   res.render("customer-register");
 });
 
-app.post("/customer/register", async (req, res) => {
+app.post("/register/customer", async (req, res) => {
   try {
     const {
-      fullName,
+      fullname,
       email,
       phone,
       address,
@@ -70,7 +70,7 @@ app.post("/customer/register", async (req, res) => {
     // Create Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     const customer = new Customer({
-      fullName,
+      fullname,
       email,
       phone,
       address,
@@ -92,14 +92,14 @@ app.post("/customer/register", async (req, res) => {
 });
 
 // sign up for vendor
-app.get("/vendor/register", (req, res) => {
+app.get("/register/vendor", (req, res) => {
   res.render("vendor-register");
 });
 
-app.post("/vendor/register", async (req, res) => {
+app.post("/register/vendor", async (req, res) => {
   try {
     const {
-      fullName,
+      fullname,
       bName,
       email,
       phone,
@@ -127,12 +127,12 @@ app.post("/vendor/register", async (req, res) => {
       errors.push("This phone was taken !!");
     }
     //Check if bussiness name of customer was taken
-    const existedBName = await Vendor.findOne({ bName });
+    const existedBName = await Vendor.findOne({ bName: bName });
     if (existedBName) {
       errors.push("This bussiness name was taken !!");
     }
 
-    const existedAddress = await Vendor.findOne({ address });
+    const existedAddress = await Vendor.findOne({ address: address });
     if (existedAddress) {
       errors.push("This bussiness address  was taken !!");
     }
@@ -146,7 +146,7 @@ app.post("/vendor/register", async (req, res) => {
     // Create Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     const vendor = new Vendor({
-      fullName,
+      fullname,
       bName,
       email,
       phone,
@@ -168,14 +168,14 @@ app.post("/vendor/register", async (req, res) => {
   }
 });
 // Register for shipper
-app.get("/shipper/register", (req, res) => {
+app.get("/register/shipper", (req, res) => {
   res.render("shipper-register");
 });
 
-app.post("/shipper/register", async (req, res) => {
+app.post("/register/shipper", async (req, res) => {
   try {
     const {
-      fullName,
+      fullname,
       email,
       phone,
       address,
@@ -212,7 +212,7 @@ app.post("/shipper/register", async (req, res) => {
     // Create Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     const shipper = new Shipper({
-      fullName,
+      fullname,
       email,
       phone,
       address,
