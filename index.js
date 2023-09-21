@@ -282,10 +282,10 @@ app.post("/customer/homepage/profile/:id", async (req, res) => {
 });
 
 //ROUTE TO CART PAGE
-app.get("/customer/cart/", async (req, res) => {
+app.get("/customer/cart/:id", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
-    const products = await Product.find({}); // Assuming you have an Order model associated with customers
+    const products = await Product.find({}); 
     res.render("cart", { customer: Customer, products: Product });
   } catch (error) {
     console.error(error);
@@ -293,8 +293,8 @@ app.get("/customer/cart/", async (req, res) => {
   }
 });
 
-// Cart page post
-app.post("/customer/cart/", async (req, res) => {
+// PUSH ORDER FROM CART TO MONGODB
+app.post("/customer/cart/:id", async (req, res) => {
   var arr = req.body.orderItems.split(",");
   req.body.orderItems = arr;
   console.log(req.body);
