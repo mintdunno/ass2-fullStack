@@ -417,11 +417,12 @@ app.get("/search", (req, res) => {
 // Route to category page
 // THERE ARE BUGS IN customer-category that can not route
 // ROUTE TO GAMES AND TOYS PAGE
+
 app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Games & Toys" });
-    res.render("customer-category", { products, category: "Games & Toys" });
+    res.render("customer-category", { products, customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
@@ -433,7 +434,7 @@ app.get("/customer/homepage/category/furniture", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Furniture" });
-    res.render("customer-category", { products, category: "Furniture" });
+    res.render("customer-category", { products, customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
@@ -445,7 +446,7 @@ app.get("/customer/homepage/category/fashion", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Fashion" });
-    res.render("customer-category", { products, category: "Fashion" });
+    res.render("customer-category", { products, customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
@@ -457,7 +458,7 @@ app.get("/customer/homepage/category/accessories", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Accessories" });
-    res.render("customer-category", { products, category: "Accessories" });
+    res.render("customer-category", { products, customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
@@ -469,7 +470,7 @@ app.get("/customer/homepage/category/others", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Others" });
-    res.render("customer-category", { products, category: "Others" });
+    res.render("customer-category", { products, customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
