@@ -43,27 +43,31 @@ app.post("/customer/register", async (req, res) => {
       password,
       profilePicture,
     } = req.body;
-    // Check if username of customer was already taken
-    const existedCustomer = await Customer.findOne({ username });
-    if (existedCustomer) {
-      return res.render("customer-register", error.push("hello"));
+    // Check if username of vendor is already taken
+    let errors = [];
+    const existedUser = await Customer.findOne({ username });
+    if (existedUser) {
+      errors.push("This username was taken !!");
     }
 
     //Check if email of customer was taken
     const existedEmail = await Customer.findOne({ email });
     if (existedEmail) {
-      return res.render("customer-register", {
-        errorMsg: "This email was taken !!",
-      });
+      errors.push("This email was taken !!");
     }
 
     //Check if phone of customer was taken
     const existedPhone = await Customer.findOne({ phone });
     if (existedPhone) {
+      errors.push("This phone was taken !!");
+    }
+
+    if (errors.length > 0) {
       return res.render("customer-register", {
-        errorMsg: "This phone was taken !!",
+        errors
       });
     }
+
 
     // Create Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -134,8 +138,6 @@ app.post("/vendor/register", async (req, res) => {
     if (existedAddress) {
       errors.push("This bussiness address  was taken !!");
     }
-
-
 
     if (errors.length > 0) {
       return res.render("vendor-register", {

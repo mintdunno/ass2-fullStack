@@ -77,35 +77,34 @@
 
                             <!-- Display Error -->
                             <div id="error" style="color: red !important;"></div>
-                            <%- include('./partials/errorMsg.ejs') %>
+                            <div><%- include('./partials/errorMsg.ejs') %></div>
 
-                                <!--Picture setup-->
-                                <div class="image-preview-container">
-                                    <div class="preview">
-                                        <img id="preview-selected-image">
-                                    </div>
-                                    <label for="file">Upload Image</label>
-                                    <input type="file" id="file" name="profilePicture" accept="image/*" required
-                                        onchange="previewImage(event);" />
+                            <!--Picture setup-->
+                            <div class="image-preview-container">
+                                <div class="preview">
+                                    <img id="preview-selected-image">
                                 </div>
+                                <label for="file">Upload Image</label>
+                                <input type="file" id="file" name="profilePicture" accept="image/*" required
+                                    onchange="previewImage(event);" />
+                            </div>
 
 
-                                <!-- checkbox -->
-                                <div class="form-check ">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                                        required>
-                                    <label class="form-check-label d-flex" for="flexCheckDefault">
-                                        I have read and agree to the terms and conditions
-                                    </label>
-                                </div>
-                                <!-- checkbox -->
+                            <!-- checkbox -->
+                            <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                <label class="form-check-label d-flex" for="flexCheckDefault">
+                                    I have read and agree to the terms and conditions
+                                </label>
+                            </div>
+                            <!-- checkbox -->
 
 
-                                <!-- Submit section -->
-                                <button class="btn btn-dark w-100 my-4 py-2" type="submit">Sign Up</button>
-                                <!-- Submit section -->
+                            <!-- Submit section -->
+                            <button class="btn btn-dark w-100 my-4 py-2" type="submit">Sign Up</button>
+                            <!-- Submit section -->
 
-                                <p>Already have an account? <a href="/">Log In</a></p>
+                            <p>Already have an account? <a href="/">Log In</a></p>
                         </div>
                     </div>
                 </form>
