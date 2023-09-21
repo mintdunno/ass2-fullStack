@@ -1,7 +1,10 @@
 <div>
-    <% if (typeof errorMsg !='undefined' ) { %>
+    <% if (typeof errors !='undefined' ) { %>
         <p style="color: red;">
-            <%= errorMsg %>
+            <% errors.forEach(error=> { %>
+                <%= error %>
+                    <br>
+                    <% }) %>
         </p>
         <% } %>
 </div>

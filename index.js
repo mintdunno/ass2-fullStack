@@ -107,26 +107,27 @@ app.post("/vendor/register", async (req, res) => {
       profilePicture,
     } = req.body;
     // Check if username of vendor is already taken
+    let errors = [];
     const existedVendor = await Vendor.findOne({ username });
     if (existedVendor) {
-      return res.render("vendor-register", {
-        errorMsg: "This username was taken !!",
-      });
+      errors.push("This username was taken !!");
     }
 
     //Check if email of customer was taken
     const existedEmail = await Vendor.findOne({ email });
     if (existedEmail) {
-      return res.render("customer-register", {
-        errorMsg: "This email was taken !!",
-      });
+      errors.push("This email was taken !!");
     }
 
     //Check if phone of customer was taken
     const existedPhone = await Vendor.findOne({ phone });
     if (existedPhone) {
-      return res.render("customer-register", {
-        errorMsg: "This phone was taken !!",
+      errors.push("This phone was taken !!");
+    }
+
+    if (errors.length > 0) {
+      return res.render("vendor-register", {
+        errors
       });
     }
 
