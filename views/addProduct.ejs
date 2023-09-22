@@ -11,7 +11,7 @@
                 <div class="mb-4">
                     <label for="productName" class="d-block mb-2">📇 Product name:</label>
                     <input type="text" class="w-100 form-control shadow-sm" name="productName" id="productName"
-                        required>
+                        minlength="5" required>
                 </div>
 
                 <!-- Product amout -->
@@ -33,10 +33,10 @@
                     <select name="productType" id="productType" class="form-control shadow-sm" required>
                         <option value="">-- Product Type --</option>
                         <option value="Game & Toy">Game & Toy</option>
-                        <option value="Furniture">Household appliances</option>
-                        <option value="Fashion">Books</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Fashion">Fashion</option>
                         <option value="Accessories">Accessories</option>
-                        <option value="Others">Watches</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
 
@@ -50,7 +50,8 @@
                 <!-- product description -->
                 <div class="mb-4">
                     <label for="description" class="d-block mb-2">📝 Description:</label>
-                    <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                    <textarea name="description" id="description" class="form-control" rows="5"
+                        maxlength="500"></textarea>
                 </div>
                 <div>
                     <input type="hidden" name="vendorUsername" id="vendorUsername" value="<%= vendor.username %>">

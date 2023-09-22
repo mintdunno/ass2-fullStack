@@ -75,12 +75,12 @@ vendorRouter.get("/product/:vid/delete/:pid", async (req, res) => {
 });
 // DELETE - Delete a product by ID
 vendorRouter.post("/product/:vid/delete/:pid", (req, res) => {
-    Product.findByIdAndDelete(req.params.pid)
+    Product.findByIdAndDelete(req.params.id)
         .then((product) => {
             if (!product) {
                 return res.send("The product doesn't exist");
             }
-            res.redirect(`/vendor/homepage/${vid}`);
+            res.redirect("/products");
         })
         .catch((error) => res.send(error));
 });

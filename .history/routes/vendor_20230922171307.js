@@ -80,7 +80,7 @@ vendorRouter.post("/product/:vid/delete/:pid", (req, res) => {
             if (!product) {
                 return res.send("The product doesn't exist");
             }
-            res.redirect(`/vendor/homepage/${vid}`);
+            res.redirect("/products");
         })
         .catch((error) => res.send(error));
 });
