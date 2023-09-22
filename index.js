@@ -27,9 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", loginRoute);
 // Route for register page
 app.use("/register", registerRouter);
-
 // Vendor Route part
-// Route for Vendor homepage
 app.use("/vendor", vendorRoute);
 
 //ROUTE TO CUSTOMER HOMEPAGE
