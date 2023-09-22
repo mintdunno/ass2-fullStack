@@ -23,3 +23,9 @@
 .accordion-button:not(.collapsed) {
     background-color: #EEEEEE;
 }
+
+/* @media only screen and (min-width: 600px) {
+    #smallCard img {
+        height: 300px;
+    }
+} */
