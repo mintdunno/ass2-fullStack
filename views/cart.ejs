@@ -25,9 +25,9 @@
                                     <label id="total-price">Total price: </label>
                                     <form action="/customer/cart/<%= customer._id  %>" method="post">
                                         <input type="text" name="orderItems" style="display:none" id="order-items">
-                                        <input type="text" name="customerName" id="customerName" style="display:none">
+                                        <input type="text" name="customerName" id="customerName"  style="display:none">
                                         <input type="text" name="username" id="username" style="display:none">
-                                        <input type="text" name="CustomerAddress" id="customerAddress"
+                                        <input type="text" name="customerAddress" id="customerAddress"
                                             style="display:none">
                                         <input type="number" name="totalPrice" id="total-price-field"
                                             style="display:none">
@@ -95,7 +95,7 @@
                 itemActionDisplay.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
                 itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
-                // Image Adding
+                
                 image.src = product.image;
                 title.innerText = product.name;
                 itemPrice.innerText = product.price + 'đ';
@@ -111,14 +111,15 @@
                 document.querySelectorAll('.item').item(i).appendChild(itemPrice);
                 document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
                 document.querySelectorAll('.action-display').item(i).appendChild(itemAction);
-                products.push(product.id);
+                products.push(product._id);
             }
             document.querySelector('#total-price').innerText = 'Total price: ' + totalPrice + 'đ';
-            document.querySelector('#total-price-field').value = totalPrice.toFixed(2);
+            document.querySelector('#total-price-field').value = totalPrice;
             document.querySelector('#order-items').value = products;
             document.querySelector('#customerName').value = "<%= customer.fullname %>";
             document.querySelector('#customerAddress').value = "<%= customer.address %>";
             document.querySelector('#username').value = "<%= customer.username %>";
+            
         }
 
         window.onsubmit = function clearLocalStorage() {

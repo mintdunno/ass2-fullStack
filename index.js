@@ -9,7 +9,7 @@ const Vendor = schema.Vendor;
 const Shipper = schema.Shipper;
 const Product = schema.Product;
 const Order = schema.Order;
-const Hub = schema.Hub;
+
 
 // Routers
 const vendorRoute = require("./routes/vendor");
@@ -85,17 +85,16 @@ app.get("/customer/cart/:id", async (req, res) => {
   }
 });
 
+
+
 // PUSH ORDER FROM CART TO MONGODB
 app.post("/customer/cart/:id", async (req, res) => {
   var arr = req.body.orderItems.split(",");
   req.body.orderItems = arr;
   console.log(req.body);
-  req.body.state = 'active';
+  req.body.status = 'active';
   const order = new Order(req.body);
   order.save()
-  randHub = await Hub.aggregate([{ "$sample": { "size": 1 } }])
-  console.log(randHub);
-  await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } })
   res.redirect(`/customer/homepage/${req.params.id}`)
 })
 

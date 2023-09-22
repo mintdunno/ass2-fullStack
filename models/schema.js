@@ -177,16 +177,11 @@ const orderSchema = new mongoose.Schema({
 });
 
 // Define Hub schema
-const hubSchema = new mongoose.Schema({
-  name: String,
-  address: String,
-  shipperID: [String],
-  orderID: [String]
-});
+
 
 
 // Create Hub model
-const Hub = mongoose.model('Hub', hubSchema);
+
 // Create Order model
 const Order = mongoose.model('Order', orderSchema);
 // Create Customer model
@@ -199,4 +194,4 @@ const Vendor = mongoose.model("Vendor", vendorSchema);
 const Shipper = mongoose.model("Shipper", shipperSchema);
 
 // Export models
-module.exports = { Customer, Vendor, Shipper, Product, Order, Hub };
+module.exports = { Customer, Vendor, Shipper, Product, Order};
