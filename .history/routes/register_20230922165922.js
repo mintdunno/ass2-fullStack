@@ -7,11 +7,11 @@ const Shipper = schema.Shipper;
 const bcrypt = require("bcryptjs");
 
 
-registerRouter.get("/customer", (req, res) => {
+registerRouter.get("/register/customer", (req, res) => {
     res.render("customer-register");
 });
 
-registerRouter.post("/customer", async (req, res) => {
+app.post("/register/customer", async (req, res) => {
     try {
         const {
             fullname,
@@ -72,11 +72,11 @@ registerRouter.post("/customer", async (req, res) => {
 });
 
 // sign up for vendor
-registerRouter.get("/vendor", (req, res) => {
+app.get("/register/vendor", (req, res) => {
     res.render("vendor-register");
 });
 
-registerRouter.post("/vendor", async (req, res) => {
+app.post("/register/vendor", async (req, res) => {
     try {
         const {
             fullname,
@@ -148,11 +148,11 @@ registerRouter.post("/vendor", async (req, res) => {
     }
 });
 // Register for shipper
-registerRouter.get("/shipper", (req, res) => {
+app.get("/register/shipper", (req, res) => {
     res.render("shipper-register");
 });
 
-registerRouter.post("/shipper", async (req, res) => {
+app.post("/register/shipper", async (req, res) => {
     try {
         const {
             fullname,
