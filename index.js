@@ -280,25 +280,6 @@ app.post("/customer/profile/:id", async (req, res) => {
     })
     .catch((error) => console.log(error.message));
 });
-// vendorRouter.post("/profile/:id", async (req, res) => {
-//   await Vendor.findByIdAndUpdate(
-//     { _id: req.params.id },
-
-//     {
-//       username: req.body.username,
-//       bName: req.body.bName,
-//       phone: req.body.phone,
-//       email: req.body.email,
-//       address: req.body.address,
-//     },
-//     { new: true }
-//   )
-//     .then(() => {
-//       console.log("Vendor information changed");
-//       res.redirect(`/vendor/homepage/${req.params.id}`);
-//     })
-//     .catch((error) => console.log(error.message));
-// });
 
 //ROUTE TO CART PAGE
 app.get("/customer/cart/:id", async (req, res) => {
