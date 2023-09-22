@@ -96,7 +96,8 @@
                 itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
 
-                image.src = `data:${product.image.mimeType};base64,${product.image.data.toString('base64')}`;
+                image.src = `data:<%= product.image.mimeType %>;base64,`;
+
                 title.innerText = product.name;
                 itemPrice.innerText = (product.price).toLocaleString('en-US') + 'đ';
                 itemAction.innerText = 'Delete';
