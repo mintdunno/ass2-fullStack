@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-9">
                                 <form id="formAccountSettings" method="POST"
-                                    action="/customer/profile/<%= customer._id %>" enctype="multipart/form-data">
+                                    action="/customer/homepage/<%= customer?.id %>" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="user-name" class="form-label">User Name</label>
@@ -52,7 +52,7 @@
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label" for="phoneNumber">Phone Number</label>
                                             <div class="input-group input-group-merge">
-                                                <input type="number" min="100000000" max="99999999999" id="phone"
+                                                <input type="number" minlength="9" maxlength="11" id="phone"
                                                     name="phone" class="form-control" value="<%= customer?.phone %>">
                                             </div>
                                         </div>

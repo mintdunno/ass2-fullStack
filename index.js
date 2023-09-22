@@ -252,7 +252,7 @@ app.get("/customer/homepage/:id", async (req, res) => {
 });
 
 //Get customer profile
-app.get("/customer/homepage/profile/:id", async (req, res) => {
+app.get("/customer/profile/:id", async (req, res) => {
   await Customer.findById(req.params.id)
     .then((customer) => {
       res.render("customer-profile", { customer });
@@ -261,13 +261,13 @@ app.get("/customer/homepage/profile/:id", async (req, res) => {
 });
 
 //update customer profile //fixing
-app.post("/customer/homepage/profile/:id", async (req, res) => {
+app.post("/customer/profile/:id", async (req, res) => {
   await Customer.findByIdAndUpdate(
     { _id: req.params.id },
 
     {
       username: req.body.username,
-      name: req.body.fullname,
+      fullname: req.body.fullname,
       phone: req.body.phone,
       email: req.body.email,
       address: req.body.address,
@@ -276,10 +276,29 @@ app.post("/customer/homepage/profile/:id", async (req, res) => {
   )
     .then(() => {
       console.log("Customer information was succesfully added");
-      res.redirect(`/customer/homepage/${req.params.id}`);
+      res.redirect(`/customer/profile/${req.params.id}`);
     })
     .catch((error) => console.log(error.message));
 });
+// vendorRouter.post("/profile/:id", async (req, res) => {
+//   await Vendor.findByIdAndUpdate(
+//     { _id: req.params.id },
+
+//     {
+//       username: req.body.username,
+//       bName: req.body.bName,
+//       phone: req.body.phone,
+//       email: req.body.email,
+//       address: req.body.address,
+//     },
+//     { new: true }
+//   )
+//     .then(() => {
+//       console.log("Vendor information changed");
+//       res.redirect(`/vendor/homepage/${req.params.id}`);
+//     })
+//     .catch((error) => console.log(error.message));
+// });
 
 //ROUTE TO CART PAGE
 app.get("/customer/cart/:id", async (req, res) => {

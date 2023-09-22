@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-9">
                                 <form id="formAccountSettings" method="POST"
-                                    action="/customer/profile/<%= customer._id %>" enctype="multipart/form-data">
+                                    action="/customer/homepage/<%= customer?.id %>" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="user-name" class="form-label">User Name</label>
@@ -41,19 +41,19 @@
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="name" class="form-label">Name</label>
-                                            <input class="form-control" type="text" minlength="5" id="fullname"
-                                                name="fullname" value="<%= customer?.fullname %>" autofocus="">
+                                            <input class="form-control" type="text" id="fullname" name="fullname"
+                                                value="<%= customer?.fullname %>" autofocus="">
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="email" class="form-label">E-mail</label>
-                                            <input class="form-control" type="email" minlength="5" id="email"
-                                                name="email" value="<%= customer?.email %>">
+                                            <input class="form-control" type="text" id="email" name="email"
+                                                value="<%= customer?.email %>">
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label" for="phoneNumber">Phone Number</label>
                                             <div class="input-group input-group-merge">
-                                                <input type="number" min="100000000" max="99999999999" id="phone"
-                                                    name="phone" class="form-control" value="<%= customer?.phone %>">
+                                                <input type="number" id="phoneNumber" name="phoneNumber"
+                                                    class="form-control" value="<%= customer?.phone %>">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
