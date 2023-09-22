@@ -319,7 +319,7 @@ app.get("/customer/:cid/product/:pid", async (req, res) => {
 });
 
 // Route to search page
-app.get("/search", (req, res) => {
+app.get("/customer/:cid/search", (req, res) => {
   const searchTerm = req.query["search-term"];
   const regexPattern = new RegExp(searchTerm, "i");
   const customer = Customer.findById(req.params.id);
@@ -388,6 +388,47 @@ app.get("/customer/:id/category/others", async (req, res) => {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Others" });
     res.render("customer-category", { products, customer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+// Footer for customer
+app.get("/customer/:id/privacy", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer-privacy", { customer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+app.get("/customer/:id/operating", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer-operating", { customer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+app.get("/customer/:id/shipping", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer-shipping", { customer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving category data.");
+  }
+});
+
+app.get("/customer/:id/return", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer-return", { customer });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving category data.");
