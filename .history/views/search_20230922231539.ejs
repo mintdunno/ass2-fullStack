@@ -11,8 +11,7 @@
                 <% products.forEach(function (product, index) { %>
                     <div class="col">
                         <div class="card h-100">
-                            <a class="stretched-link"
-                                href="/customer/<%= customer._id %>/product/<%= product._id %>"><img loading="lazy"
+                            <a class="stretched-link" href="/product/<%= product._id %>"><img loading="lazy"
                                     src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
                                     class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">

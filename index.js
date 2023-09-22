@@ -110,12 +110,12 @@ app.get("/customer/:cid/product/:pid", async (req, res) => {
 });
 
 // Route to search page
-app.get("/customer/:cid/search", (req, res) => {
+app.get("/customer/:cid/search", async (req, res) => {
   const searchTerm = req.query["search-term"];
   const regexPattern = new RegExp(searchTerm, "i");
-  const customer = Customer.findById(req.params.id);
+  const customer = await Customer.findById(req.params.cid);
 
-  Product.find({ name: { $regex: regexPattern } })
+  await Product.find({ name: { $regex: regexPattern } })
     .then((products) => {
       res.render("search", { products, customer });
     })

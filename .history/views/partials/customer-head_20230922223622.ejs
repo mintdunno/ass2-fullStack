@@ -25,7 +25,7 @@
       <div class="container-fluid d-flex gap-3 align-items-center flex-wrap justify-content-between">
         <div class="">
           <!-- Logo is hear -->
-          <a href="/customer/homepage/<%= customer._id %>"
+          <a href="/customer/homepage/<%= customer ? customer._id : '' %>"
             class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
             <img loading="lazy" width="250px" src="/img/logo.svg" alt="Logo" />
           </a>
@@ -50,7 +50,7 @@
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
               data-bs-toggle="dropdown" aria-expanded="false">
               <img loading="lazy"
-                src="data:image/<%= customer?.profilePicture?.mimeType %>;base64,<%= customer?.profilePicture?.data.toString('base64') %>"
+                src="data:image/<%= customer?.profilePicture?.mimeType %>;base64,<%= customer?.profilePicture.data.toString('base64') %>"
                 alt="mdo" width="30" height="30" class="rounded-circle" />
             </a>
             <ul class="dropdown-menu text-small shadow">
