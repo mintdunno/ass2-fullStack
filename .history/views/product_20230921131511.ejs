@@ -22,10 +22,23 @@
                 <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                     <!-- Main image -->
                     <img loading="lazy" class="w-100 img-fluid border rounded mb-3"
-                        src="data:<%= prodDetail.image.mimeType %>;base64,<%= prodDetail.image.data.toString('base64') %>"
-                        alt="">
+                        src="/img/products/wooden-saigonopoly/wooden-saigonopoly-1.webp" alt="">
 
                     <!-- Sub images -->
+                    <div class="small-img-group">
+                        <div class="small-img-col">
+                            <img loading="lazy" width="100%" class="small-img rounded"
+                                src="/img/products/wooden-saigonopoly/wooden-saigonopoly-2.webp" alt="">
+                        </div>
+                        <div class="small-img-col">
+                            <img loading="lazy" width="100%" class="small-img rounded"
+                                src="/img/products/wooden-saigonopoly/wooden-saigonopoly-3.webp" alt="">
+                        </div>
+                        <div class="small-img-col">
+                            <img loading="lazy" width="100%" class="small-img rounded"
+                                src="/img/products/wooden-saigonopoly/wooden-saigonopoly-4.webp" alt="">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-md-5 col-lg-6 col-xl-7 my-lg-5 px-lg-5">
                     <div class="mt-2">
@@ -54,8 +67,7 @@
                         </div>
                         <button class="btn-add-cart" type="button">Add to Cart</button>
                         <div class="btn-add-cart-status" style="display: none;">Added to your cart</div>
-                        <a href="/customer/cart/<%= customer._id %>"><button class="btn w-100 border" type="button">Buy
-                                now</button></a>
+                        <a href="/customer/cart/"><button class="btn w-100 border" type="button">Buy now</button></a>
                     </div>
                 </div>
             </div>
@@ -125,21 +137,21 @@
 
     <script>
         const addToCart = document.querySelector('.btn-add-cart');
-        addToCart.addEventListener('click', () => {
+        addToCart.addEventListener('click', ()=>{
             document.querySelector('.btn-add-cart-status').style = "display:flex text-align-center";
             var added = false;
             for (let i = 0; i < localStorage.length; i++) {
                 var key = localStorage.key(i);
                 console.log(localStorage.getItem(key));
                 var addedProduct = JSON.parse(localStorage.getItem(key));
-                if (addedProduct._id === '<%= prodDetail.id %>') {
+                if(addedProduct._id === '<%= prodDetail.id %>'){
                     added = true;
                     break;
                 }
             }
-            if (!added) {
+            if(!added){
                 var num = 0;
-                while (localStorage.getItem(num) !== null) {
+                while(localStorage.getItem(num) !== null){
                     num++;
                 }
                 localStorage.setItem(num, '<%-JSON.stringify(prodDetail)%>');

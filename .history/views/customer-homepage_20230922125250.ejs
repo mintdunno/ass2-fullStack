@@ -47,19 +47,17 @@
       <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
         <label class="btn btn-outline-dark" for="btnradio1">Price low to high</label>
-
+      
         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
         <label class="btn btn-outline-dark" for="btnradio3">Price high to low</label>
-      </div>
+      </div>      
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         <!-- card 1 -->
         <% products.forEach(product=> { %>
           <div class="col">
             <div class="card h-100">
-              <a class="stretched-link" href="/customer/<%= customer._id %>/product/<%= product._id %>"><img
-                  loading="lazy"
-                  src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
-                  class="card-img-top" alt="..."></a>
+              <a class="stretched-link" href="/product/<%= product._id %>"><img loading="lazy"
+                  src="<%= product.image %>" class="card-img-top" alt="..."></a>
               <div class="card-body text-center">
                 <h5 class="card-title">
                   <%= product.name %>
@@ -77,5 +75,5 @@
     <!------------- Main section ends HERE --------------------->
   </div>
 
-  <!-- Footer section -->
-  <%- include('./partials/customer-footer') %>
+<!-- Footer section -->
+<%- include('./partials/customer-footer') %>

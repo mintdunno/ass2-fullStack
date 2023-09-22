@@ -22,8 +22,7 @@
                 <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                     <!-- Main image -->
                     <img loading="lazy" class="w-100 img-fluid border rounded mb-3"
-                        src="data:<%= prodDetail.image.mimeType %>;base64,<%= prodDetail.image.data.toString('base64') %>"
-                        alt="">
+                        src="/img/products/wooden-saigonopoly/wooden-saigonopoly-1.webp" alt="">
 
                     <!-- Sub images -->
                 </div>
@@ -54,8 +53,7 @@
                         </div>
                         <button class="btn-add-cart" type="button">Add to Cart</button>
                         <div class="btn-add-cart-status" style="display: none;">Added to your cart</div>
-                        <a href="/customer/cart/<%= customer._id %>"><button class="btn w-100 border" type="button">Buy
-                                now</button></a>
+                        <a href="/customer/cart/"><button class="btn w-100 border" type="button">Buy now</button></a>
                     </div>
                 </div>
             </div>

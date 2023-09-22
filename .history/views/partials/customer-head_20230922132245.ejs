@@ -49,9 +49,8 @@
           <div class="flex-shrink-0 dropdown">
             <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
               data-bs-toggle="dropdown" aria-expanded="false">
-              <img loading="lazy"
-                src="data:image/<%= customer?.profilePicture.contentType %>;base64,<%= customer?.profilePicture.data.toString('base64') %>"
-                alt="mdo" width="30" height="30" class="rounded-circle" />
+              <img loading="lazy" src="https://github.com/mdo.png" alt="mdo" width="30" height="30"
+                class="rounded-circle" />
             </a>
             <ul class="dropdown-menu text-small shadow">
               <li>
@@ -79,18 +78,16 @@
                   Toys</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark fw-bold"
-                  href="/customer/<%= customer._id %>/category/furniture">Furniture</a>
+                <a class="nav-link text-dark fw-bold" href="/customer/homepage/category/furniture">Furniture</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="/customer/<%= customer._id %>/category/fashion">Fashion</a>
+                <a class="nav-link text-dark fw-bold" href="/customer/homepage/category/fashion">Fashion</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark fw-bold"
-                  href="/customer/<%= customer._id %>/category/accessories">Accessories</a>
+                <a class="nav-link text-dark fw-bold" href="/customer/homepage/category/accessories">Accessories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="/customer/<%= customer._id %>/category/others">Others</a>
+                <a class="nav-link text-dark fw-bold" href="/customer/homepage/category/others">Others</a>
               </li>
             </ul>
           </div>

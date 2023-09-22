@@ -59,7 +59,7 @@
               <a class="stretched-link" href="/customer/<%= customer._id %>/product/<%= product._id %>"><img
                   loading="lazy"
                   src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
-                  class="card-img-top" alt="..."></a>
+                  class="card-img-top" alt="..." height="300px" width="100"></a>
               <div class="card-body text-center">
                 <h5 class="card-title">
                   <%= product.name %>

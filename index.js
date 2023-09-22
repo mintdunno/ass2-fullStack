@@ -260,7 +260,7 @@ app.get("/customer/homepage/profile/:id", async (req, res) => {
     .catch((error) => res.send(error));
 });
 
-//update customer profile
+//update customer profile //fixing
 app.post("/customer/homepage/profile/:id", async (req, res) => {
   await Customer.findByIdAndUpdate(
     { _id: req.params.id },
@@ -285,8 +285,8 @@ app.post("/customer/homepage/profile/:id", async (req, res) => {
 app.get("/customer/cart/:id", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
-    const products = await Product.find({}); 
-    res.render("cart", { customer: Customer, products: Product });
+    const products = await Product.find({});
+    res.render("cart", { customer: customer, products: products });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving customer data.");
@@ -304,15 +304,14 @@ app.post("/customer/cart/:id", async (req, res) => {
   randHub = await Hub.aggregate([{ "$sample": { "size": 1 } }])
   console.log(randHub);
   await Hub.findByIdAndUpdate(randHub, { $push: { orderID: order._id } })
-  res.redirect("/")
+  res.redirect(`/customer/homepage/${req.params.id}`)
 })
 
 // Route to detail page
-app.get("/product/:id", async (req, res) => {
+app.get("/customer/:cid/product/:pid", async (req, res) => {
   try {
-    let productId = req.params.id;
-    const customer = await Customer.findById(req.params.id);
-    const prodDetail = await Product.findById(productId);
+    const customer = await Customer.findById(req.params.cid);
+    const prodDetail = await Product.findById(req.params.pid);
     res.render("product", { prodDetail, customer });
   } catch (error) {
     res.status(500).send({ message: error.message || "Error occured" });
@@ -336,7 +335,7 @@ app.get("/search", (req, res) => {
 // THERE ARE BUGS IN customer-category that can not route
 // ROUTE TO GAMES AND TOYS PAGE
 
-app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
+app.get("/customer/:id/category/gamesAndToys", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Games & Toys" });
@@ -348,7 +347,7 @@ app.get("/customer/homepage/category/gamesAndToys", async (req, res) => {
 });
 
 // ROUTE TO Furniture PAGE
-app.get("/customer/homepage/category/furniture", async (req, res) => {
+app.get("/customer/:id/category/furniture", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Furniture" });
@@ -360,7 +359,7 @@ app.get("/customer/homepage/category/furniture", async (req, res) => {
 });
 
 // ROUTE TO Fashion PAGE
-app.get("/customer/homepage/category/fashion", async (req, res) => {
+app.get("/customer/:id/category/fashion", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Fashion" });
@@ -372,7 +371,7 @@ app.get("/customer/homepage/category/fashion", async (req, res) => {
 });
 
 // ROUTE TO Accessories PAGE
-app.get("/customer/homepage/category/accessories", async (req, res) => {
+app.get("/customer/:id/category/accessories", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Accessories" });
@@ -384,7 +383,7 @@ app.get("/customer/homepage/category/accessories", async (req, res) => {
 });
 
 // ROUTE TO Others PAGE
-app.get("/customer/homepage/category/others", async (req, res) => {
+app.get("/customer/:id/category/others", async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     const products = await Product.find({ category: "Others" });

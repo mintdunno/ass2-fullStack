@@ -23,7 +23,7 @@
                                 <div id="proceed-purchase">
 
                                     <label id="total-price">Total price: </label>
-                                    <form action="/customer/cart/<%= customer._id  %>" method="post">
+                                    <form action="/customer/cart/" method="post">
                                         <input type="text" name="orderItems" style="display:none" id="order-items">
                                         <input type="text" name="customerName" id="customerName" style="display:none">
                                         <input type="text" name="username" id="username" style="display:none">
@@ -31,7 +31,8 @@
                                             style="display:none">
                                         <input type="number" name="totalPrice" id="total-price-field"
                                             style="display:none">
-                                        <button id="btn-order" type="submit">Confirm</button>
+                                        <a href="/customer/homepage"><button id="btn-order"
+                                                type="submit">Confirm</button></a>
                                     </form>
                                 </div>
                             </div>
