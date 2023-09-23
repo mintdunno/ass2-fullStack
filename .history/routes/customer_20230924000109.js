@@ -137,8 +137,7 @@ customerRouter.get("/:id/category/fashion", async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
         const products = await Product.find({ category: "Fashion" });
-        const category = "Fashion";
-        res.render("customer-category", { products, customer, category });
+        res.render("customer-category", { products, customer });
     } catch (error) {
         console.error(error);
         res.status(500).send("Error retrieving category data.");
@@ -150,8 +149,7 @@ customerRouter.get("/:id/category/accessories", async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
         const products = await Product.find({ category: "Accessories" });
-        const category = "Accessories";
-        res.render("customer-category", { products, customer, category });
+        res.render("customer-category", { products, customer });
     } catch (error) {
         console.error(error);
         res.status(500).send("Error retrieving category data.");
@@ -163,8 +161,7 @@ customerRouter.get("/:id/category/others", async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
         const products = await Product.find({ category: "Others" });
-        const category = "Others";
-        res.render("customer-category", { products, customer, category });
+        res.render("customer-category", { products, customer });
     } catch (error) {
         console.error(error);
         res.status(500).send("Error retrieving category data.");

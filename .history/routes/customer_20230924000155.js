@@ -163,8 +163,7 @@ customerRouter.get("/:id/category/others", async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
         const products = await Product.find({ category: "Others" });
-        const category = "Others";
-        res.render("customer-category", { products, customer, category });
+        res.render("customer-category", { products, customer });
     } catch (error) {
         console.error(error);
         res.status(500).send("Error retrieving category data.");
