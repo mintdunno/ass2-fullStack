@@ -124,6 +124,7 @@ vendorRouter.get("/profile/:id", async (req, res) => {
 });
 
 //update vendor profile
+// Bug when update image
 vendorRouter.post("/profile/:id", async (req, res) => {
 
     let updateData = {

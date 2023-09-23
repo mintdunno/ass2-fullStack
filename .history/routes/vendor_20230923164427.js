@@ -124,6 +124,7 @@ vendorRouter.get("/profile/:id", async (req, res) => {
 });
 
 //update vendor profile
+// Bug when update image
 vendorRouter.post("/profile/:id", async (req, res) => {
 
     let updateData = {
@@ -152,6 +153,31 @@ vendorRouter.post("/profile/:id", async (req, res) => {
         .catch((error) => console.log(error.message));
 
 });
-
+customerRouter.post("/profile/:id", async (req, res) => {
+    let updateData = {
+        username: req.body.username,
+        fullname: req.body.fullname,
+        phone: req.body.phone,
+        email: req.body.email,
+        address: req.body.address,
+    }
+    // Only update the image if a new image has been uploaded
+    if (req.files && req.files.profilePicture && req.files.profilePicture.mimetype) {
+        updateData.profilePicture = {
+            data: req.files.profilePicture.data,
+            mimeType: req.files.profilePicture.mimetype
+        };
+    }
+    await Customer.findByIdAndUpdate(
+        { _id: req.params.id },
+        updateData,
+        { new: true }
+    )
+        .then(() => {
+            console.log("Customer information was succesfully added");
+            res.redirect(`/customer/profile/${req.params.id}`);
+        })
+        .catch((error) => console.log(error.message));
+});
 
 module.exports = vendorRouter;
