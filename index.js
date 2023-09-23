@@ -76,34 +76,6 @@ app.post("/shipper/homepage/profile/:id", async (req, res) => {
     .catch((error) => console.log(error.message));
 });
 
-//ROUTE TO CUSTOMER PRIVACY PAGE
-app.get("/customer/privacy", async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
-
-  res.render("customer-privacy", { customer });
-});
-
-//ROUTE TO CUSTOMER OPERATING PAGE
-app.get("/customer/operating", async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
-
-  res.render("customer-operating", { customer });
-});
-
-//ROUTE TO CUSTOMER SHIPPING PAGE
-app.get("/customer/shipping", async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
-
-  res.render("customer-shipping", { customer });
-});
-
-//ROUTE TO CUSTOMER RETURN PAGE
-app.get("/customer/return", async (req, res) => {
-  const customer = await Customer.findById(req.params.id);
-
-  res.render("customer-return", { customer });
-});
-
 //ROUTE TO SHIPPER PRIVACY PAGE
 app.get("/shipper/privacy", async (req, res) => {
   const shipper = await Shipper.findById(req.params.id);
