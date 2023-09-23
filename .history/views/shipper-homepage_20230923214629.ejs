@@ -12,7 +12,7 @@
                     class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
                     <div>
 
-                        <p>🧑 <%= order.customerName %>
+                        <p>👤 <%= order.customerName %>
                         </p>
                         <p>💸 <%= (order.totalPrice).toLocaleString('en-US') %>&#8363 %>
                         </p>
@@ -23,10 +23,9 @@
                     <div>
                         <p>🗺️ <%= order.customerAddress %>
                         </p>
-                        <p>Products 🛒:
-                            <% order.orderItems.forEach(item=> { %>
+                        <p>🛒<% order.orderItems.forEach(item=> { %>
                                 <p>
-                                    <%= item, %>
+                                    <%= item, %>,
                                 </p>
                                 <% }) %>
                         </p>
@@ -45,11 +44,9 @@
                         </button>
                     </form>
                 </div>
-                <hr>
                 <% }) %>
 
         </div>
-
     </div>
     <!-- Shopping cart table -->
     </div>

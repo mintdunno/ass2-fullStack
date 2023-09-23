@@ -36,14 +36,19 @@ app.use("/customer", customerRouter);
 
 //ROUTE TO SHIPPER HOMEPAGE
 app.get("/shipper/homepage/:id", async (req, res) => {
+  const shipper = await Shipper.findById(req.params.id);
+  var orders;
+  if (shipper.location === "Ho Chi Minh") {
+    orders = await Order.find({ hub: "Ho Chi Minh" })
+  }
+  if (shipper.location === "Da Nang") {
+    orders = await Order.find({ hub: "Da Nang" })
+  }
+  if (shipper.location === "Ha Noi") {
+    orders = await Order.find({ hub: "Ha Noi" })
+  }
   try {
-    const shipper = await Shipper.findById(req.params.id);
-    if (shipper.location === "Da Nang") {
-
-    }
-    const products = await Product.find({});
-
-    res.render("shipper-homepage", { shipper, products });
+    res.render("shipper-homepage", { shipper, orders });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving customer data.");
