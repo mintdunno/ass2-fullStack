@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 6900;
-const bcrypt = require("bcryptjs");
 const fileUpload = require("express-fileupload");
 
 // Routers
