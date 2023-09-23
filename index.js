@@ -38,6 +38,9 @@ app.use("/customer", customerRouter);
 app.get("/shipper/homepage/:id", async (req, res) => {
   try {
     const shipper = await Shipper.findById(req.params.id);
+    if (shipper.location === "Da Nang") {
+
+    }
     const products = await Product.find({});
 
     res.render("shipper-homepage", { shipper, products });

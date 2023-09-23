@@ -126,43 +126,46 @@ const productCategory = [
   "Others",
   "nothing",
 ];
-const productSchema = new mongoose.Schema({
-  //Name of the product
-  name: {
-    type: String,
-    required: true,
+const productSchema = new mongoose.Schema(
+  {
+    //Name of the product
+    name: {
+      type: String,
+      required: true,
+    },
+    // Amount
+    amount: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    // Price
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    // category
+    category: {
+      type: String,
+      required: true,
+      enum: productCategory,
+    },
+    image: {
+      data: Buffer,
+      mimeType: String,
+    },
+    description: {
+      type: String,
+      maxLength: 500,
+    },
+    vendorUsername: {
+      type: String,
+      required: true,
+    },
   },
-  // Amount
-  amount: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
-  // Price
-  price: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
-  // category
-  category: {
-    type: String,
-    required: true,
-    enum: productCategory,
-  },
-  image: {
-    data: Buffer,
-    mimeType: String,
-  },
-  description: {
-    type: String,
-    maxLength: 500,
-  },
-  vendorUsername: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
 // Define order schema
 const orderSchema = new mongoose.Schema({
@@ -173,6 +176,11 @@ const orderSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['active', 'shipped', 'canceled'],
+  },
+  // Distrubtion gub
+  location: {
+    type: String,
+    enum: ["Ho Chi Minh", "Da Nang", "Ha Noi"],
   },
 });
 
