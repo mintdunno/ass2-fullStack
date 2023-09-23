@@ -23,8 +23,7 @@
                     <div>
                         <p>🗺️ <%= order.customerAddress %>
                         </p>
-                        <p>Products 🛒:
-                            <% order.orderItems.forEach(item=> { %>
+                        <p>🛒<% order.orderItems.forEach(item=> { %>
                                 <p>
                                     <%= item, %>
                                 </p>
@@ -45,11 +44,9 @@
                         </button>
                     </form>
                 </div>
-                <hr>
                 <% }) %>
 
         </div>
-
     </div>
     <!-- Shopping cart table -->
     </div>
