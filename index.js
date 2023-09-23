@@ -3,13 +3,6 @@ const app = express();
 const port = 6900;
 const bcrypt = require("bcryptjs");
 const fileUpload = require("express-fileupload");
-const schema = require("./models/schema");
-const Customer = schema.Customer;
-const Vendor = schema.Vendor;
-const Shipper = schema.Shipper;
-const Product = schema.Product;
-const Order = schema.Order;
-
 
 // Routers
 const vendorRoute = require("./routes/vendor");
