@@ -63,24 +63,20 @@ vendorRouter.get("/product/:vid/update/:pid", async (req, res) => {
 vendorRouter.post("/product/:vid/update/:pid", async (req, res) => {
     const vendor = await Vendor.findById(req.params.vid);
     await Product.findByIdAndUpdate(
-        { _id: req.params.pid },
+        { _id: req.params.id },
 
         {
-            name: req.body.productName,
-            amount: req.body.amount,
-            price: req.body.price,
-            category: req.body.productType,
-            description: req.body.description,
-            image: {
-                data: req.files.productPIC.data,
-                mimeType: req.files.productPIC.mimetype,
-            },
+            username: req.body.username,
+            bName: req.body.bName,
+            phone: req.body.phone,
+            email: req.body.email,
+            address: req.body.address,
         },
         { new: true }
     )
         .then(() => {
-            console.log("Product information changed");
-            res.redirect(`/vendor/homepage/${req.params.vid}`);
+            console.log("Vendor information changed");
+            res.redirect(`/vendor/homepage/${req.params.id}`);
         })
         .catch((error) => console.log(error.message));
 });
