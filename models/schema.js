@@ -1,12 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require("./mongoose")
 const Schema = mongoose.Schema;
-mongoose
-  .connect(
-    "mongodb+srv://mint:mint@corner-store.cbiyacl.mongodb.net/Store?retryWrites=true&w=majority"
-  )
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((error) => console.log(error.message));
 
+//Customer Schema
 const customerSchema = new Schema(
   {
     fullname: String,
@@ -41,6 +36,7 @@ const customerSchema = new Schema(
   { timestamps: true }
 );
 
+// Vendor Schema
 const vendorSchema = new Schema(
   {
     fullname: String,
@@ -77,6 +73,7 @@ const vendorSchema = new Schema(
   { timestamps: true }
 );
 
+// Shipper Schema
 const shipperSchema = new mongoose.Schema(
   {
     fullname: String,
@@ -126,6 +123,8 @@ const productCategory = [
   "Others",
   "nothing",
 ];
+
+//Product Schema
 const productSchema = new mongoose.Schema(
   {
     //Name of the product
@@ -170,7 +169,7 @@ const productSchema = new mongoose.Schema(
 // Define order schema
 const orderSchema = new mongoose.Schema({
   orderItems: [String],
-  
+
   customerAddress: String,
   customerName: String,
   totalPrice: Number,
