@@ -194,4 +194,4 @@ const Vendor = mongoose.model("Vendor", vendorSchema);
 const Shipper = mongoose.model("Shipper", shipperSchema);
 
 // Export models
-module.exports = { Customer, Vendor, Shipper, Product, Order};
+module.exports = { Customer, Vendor, Shipper, Product, Order };
