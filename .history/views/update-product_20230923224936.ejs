@@ -35,15 +35,15 @@
                     <label for="productType" class="d-block mb-2">⛰️ Product type:</label>
                     <select name="productType" id="productType" class="form-control shadow-sm" required>
                         <option value="">-- Product Type --</option>
-                        <option value="Games" <% if (product.category==="Games" ) { %>selected<% } %> >Game
+                        <option value="Game & Toy" <% if (product.category==="Game & Toy" ) { %>selected<% } %> >Game
                                 & Toy</option>
                         <option value="Furniture" <% if (product.category==="Furniture" ) { %>
-                            selected<% } %>>Furniture</option>
+                            selected<% } %>>Household appliances</option>
                         <option value="Fashion" <% if (product.category==="Fashion" ) { %>
                             selected<% } %> >Books</option>
                         <option value="Accessories" <% if (product.category==="Accessories" ) { %>selected<% } %>
                                 >Accessories</option>
-                        <option value="Others" <% if (product.category==="Others" ) { %>selected<% } %>>Others
+                        <option value="Others" <% if (product.category==="Others" ) { %>selected<% } %>>Watches
                         </option>
                     </select>
                 </div>
