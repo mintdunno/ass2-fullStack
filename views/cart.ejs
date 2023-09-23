@@ -26,7 +26,7 @@
                                     <form action="/customer/cart/<%= customer._id  %>" method="post">
                                         <input type="text" name="orderItems" style="display:none" id="order-items">
                                         <input type="text" name="customerName" id="customerName" style="display:none">
-                                        <input type="text" name="customerPhone" id="phone" style="display:none">
+                                        <input type="text" name="customerPhone" id="customerPhone" style="display:none">
                                         <input type="text" name="username" id="username" style="display:none">
                                         <input type="text" name="customerAddress" id="customerAddress"
                                             style="display:none">
@@ -100,7 +100,7 @@
                     document.querySelectorAll('.item').item(i).appendChild(itemPrice);
                     document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
                     document.querySelectorAll('.action-display').item(i).appendChild(itemAction);
-                    products.push(product._id);
+                    products.push(product.name);
                 }
                 document.querySelector('#total-price').innerText = 'Total price: ' + totalPrice.toLocaleString('en-US') + 'đ';
                 document.querySelector('#total-price-field').value = totalPrice;
@@ -108,8 +108,7 @@
                 document.querySelector('#customerName').value = "<%= customer.fullname %>";
                 document.querySelector('#customerAddress').value = "<%= customer.address %>";
                 document.querySelector('#username').value = "<%= customer.username %>";
-                document.querySelector('#phone').value = "<%= customer.phone %>";
-                
+                document.querySelector('#customerPhone').value = "<%= customer.phone %>";
                 document.querySelector('#hub').value = location;
             }
 

@@ -170,6 +170,7 @@ const productSchema = new mongoose.Schema(
 // Define order schema
 const orderSchema = new mongoose.Schema({
   orderItems: [String],
+  
   customerAddress: String,
   customerName: String,
   totalPrice: Number,
