@@ -11,7 +11,7 @@ body {
 }
 
 .card img {
-    object-fit: cover;
+    object-fit: contain;
     height: 250px;
 }
 
