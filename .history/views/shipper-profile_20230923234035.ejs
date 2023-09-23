@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-md-3 text-center">
                                 <form id="formAccountSettings" method="POST"
-                                    action="/shipper/profile/<%= shipper?._id %>" enctype="multipart/form-data">
+                                    action="/shipper/profile/<%= shipper._id %>" enctype="multipart/form-data">
                                     <img src="data:image/<%= shipper?.profilePicture.contentType %>;base64,<%= shipper?.profilePicture.data.toString('base64') %>"
                                         alt="user-avatar" class="img-thumbnail" id="uploadedAvatar">
                                     <label for="upload" class="btn btn-dark mt-2">

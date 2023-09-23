@@ -3,6 +3,12 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Account</li>
+                </ol>
+            </nav>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -13,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-3 text-center">
                                 <form id="formAccountSettings" method="POST"
-                                    action="/shipper/profile/<%= shipper?._id %>" enctype="multipart/form-data">
+                                    action="/customer/profile/<%= shipper._id %>" enctype="multipart/form-data">
                                     <img src="data:image/<%= shipper?.profilePicture.contentType %>;base64,<%= shipper?.profilePicture.data.toString('base64') %>"
                                         alt="user-avatar" class="img-thumbnail" id="uploadedAvatar">
                                     <label for="upload" class="btn btn-dark mt-2">
@@ -56,7 +62,7 @@
                                     <div class="mb-3 col-md-6">
                                         <label for="service-area" class="form-label">Distribution hub</label>
                                         <select class="form-select form-select" aria-label="Small select example"
-                                            name="location" disabled>
+                                            name="location">
                                             <option value="Ho Chi Minh" <% if (shipper.location==="Ho Chi Minh" ) { %>
                                                 selected<% } %> >Ho Chi Minh</option>
                                             <option value="Da Nang" <% if (shipper.location==="Da Nang" ) { %>

@@ -20,7 +20,7 @@
                 <div class="">
                     <!-- Logo is hear -->
                     <!-- Link back to shipper page -->
-                    <a href="/shipper/homepage/<%= shipper?.id %>"
+                    <a href="/shipper/<%= shipper?.id %>"
                         class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                         <img loading="lazy" width="250px" src="/img/logo.svg" alt="Logo" />
                     </a>
@@ -37,7 +37,8 @@
                         </a>
                         <ul class="dropdown-menu text-small shadow">
                             <li>
-                                <a class="dropdown-item" href="/shipper/profile/<%= shipper?._id %>">Profile</a>
+                                <a class="dropdown-item"
+                                    href="/shipper/homepage/profile/<%= shipper?._id %>">Profile</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider" />

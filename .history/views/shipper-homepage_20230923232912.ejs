@@ -12,21 +12,21 @@
                     class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
                     <div>
 
-                        <p>🧑: <%= order.customerName %>
+                        <p>🧑 <%= order.customerName %>
                         </p>
-                        <p>💸: <%= (order.totalPrice).toLocaleString('en-US') %>&#8363 %>
+                        <p>💸 <%= (order.totalPrice).toLocaleString('en-US') %>&#8363 %>
                         </p>
-                        <p>📞: 0932131389</p>
+                        <p>📞 0932131389</p>
                     </div>
                 </div>
                 <div class="col-md-7 bg-white text-dark d-flex align-items-center">
                     <div>
-                        <p>🗺️: <%= order.customerAddress %>
+                        <p>🗺️ <%= order.customerAddress %>
                         </p>
-                        <p>🛒Products:
+                        <p>Products 🛒:
                             <% order.orderItems.forEach(item=> { %>
                                 <p>
-                                    🌟<%= item %>
+                                    - <%= item %>
                                 </p>
                                 <% }) %>
                         </p>
