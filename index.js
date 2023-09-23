@@ -51,7 +51,7 @@ app.get("/shipper/homepage/:id", async (req, res) => {
     res.render("shipper-homepage", { shipper, orders });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error retrieving customer data.");
+    res.status(500).send("Error retrieving shipper data.");
   }
 });
 
@@ -80,6 +80,34 @@ app.post("/shipper/homepage/profile/:id", async (req, res) => {
     .then(() => {
       console.log("Shipper information was succesfully added");
       res.redirect(`/shipper/homepage/${req.params.id}`);
+    })
+    .catch((error) => console.log(error.message));
+});
+
+//update customer profile
+customerRouter.post("/profile/:id", async (req, res) => {
+  let updateData = {
+    username: req.body.username,
+    fullname: req.body.fullname,
+    phone: req.body.phone,
+    email: req.body.email,
+    address: req.body.address,
+  }
+  // Only update the image if a new image has been uploaded
+  if (req.files && req.files.profilePicture && req.files.profilePicture.mimetype) {
+    updateData.profilePicture = {
+      data: req.files.profilePicture.data,
+      mimeType: req.files.profilePicture.mimetype
+    };
+  }
+  await Customer.findByIdAndUpdate(
+    { _id: req.params.id },
+    updateData,
+    { new: true }
+  )
+    .then(() => {
+      console.log("Customer information was succesfully added");
+      res.redirect(`/customer/profile/${req.params.id}`);
     })
     .catch((error) => console.log(error.message));
 });

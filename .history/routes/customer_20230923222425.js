@@ -112,7 +112,7 @@ customerRouter.get("/:cid/search", async (req, res) => {
 customerRouter.get("/:id/category/gamesAndToys", async (req, res) => {
     try {
         const customer = await Customer.findById(req.params.id);
-        const products = await Product.find({ category: "Games" });
+        const products = await Product.find({ category: "Game & Toys" });
         res.render("customer-category", { products, customer });
     } catch (error) {
         console.error(error);

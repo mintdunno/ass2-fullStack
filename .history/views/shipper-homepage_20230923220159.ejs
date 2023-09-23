@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <title>The Corner Store</title>
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/vendor.css" />
+</head>
+
+<body>
+    <!-- Header Section Is Here just for shipper -->
+    <div class="container-fluid">
+        <header class="pb-4 bg-body-secondary">
+            <div class="container-fluid d-flex flex-wrap justify-content-evenly gap-5">
+                <div class="">
+                    <!-- Logo is hear -->
+                    <!-- Link back to shipper page -->
+                    <a href="/shipper/homepage/<%= shipper?.id %>"
+                        class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                        <img loading="lazy" width="250px" src="/img/logo.svg" alt="Logo" />
+                    </a>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <!-- shipper Icon -->
+                    <div class="flex-shrink-0 dropdown">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img loading="lazy"
+                                src="data:image/<%= shipper?.profilePicture.contentType %>;base64,<%= shipper?.profilePicture.data.toString('base64') %>"
+                                alt="mdo" width="30" height="30" class="rounded-circle" />
+                        </a>
+                        <ul class="dropdown-menu text-small shadow">
+                            <li>
+                                <a class="dropdown-item"
+                                    href="/shipper/homepage/profile/<%= shipper?._id %>">Profile</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="/">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!--------- Header Section Is Here -------->
+
+        <div class="p-3 p-lg-5  bg-dark container-fluid rounded">
+            <!-- For demo purpose -->
+            <div class="text-white text-center fw-bolder">
+                <h1 class="p-2">Delivery</h1>
+            </div>
+
+            <div class="row py-2 rounded fs-5">
+                <% orders.forEach(order=> { %>
+                    <div
+                        class="col-md-3 bg-white text-sm-start d-flex justify-content-center flex-column align-items-center py-4 ">
+                        <div>
+
+                            <p>🧑 <%= order.customerName %>
+                            </p>
+                            <p>💸 <%= (order.totalPrice).toLocaleString('en-US') %>&#8363 %>
+                            </p>
+                            <p>📞 0932131389</p>
+                        </div>
+                    </div>
+                    <div class="col-md-7 bg-white text-dark d-flex align-items-center">
+                        <div>
+                            <p>🗺️ <%= order.customerAddress %>
+                            </p>
+                            <p>Products 🛒:
+                                <% order.orderItems.forEach(item=> { %>
+                                    <p>
+                                        <%= item, %>
+                                    </p>
+                                    <% }) %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
+                        <form action="hello" id="delivery-form" method="post">
+                            <h5 class="fw-bold">Status</h5>
+                            <select class="form-select text-center" aria-label="Default select example"
+                                name="delivery-form">
+                                <option value="active" selected>Active</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="canceled">Canceled</option>
+                            </select>
+                            <button type="submit" class="btn btn-success w-100 my-2">Save
+                            </button>
+                        </form>
+                    </div>
+                    <hr>
+                    <% }) %>
+
+            </div>
+
+        </div>
+        <!-- Shopping cart table -->
+    </div>
+
+
+
+    <!-- Footer section -->
+    <%- include('./partials/shipper-footer') %>
