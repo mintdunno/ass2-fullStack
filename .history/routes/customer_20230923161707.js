@@ -38,15 +38,22 @@ customerRouter.post("/profile/:id", async (req, res) => {
         address: req.body.address,
     }
     // Only update the image if a new image has been uploaded
-    if (req.files && req.files.profilePicture && req.files.profilePicture.mimetype) {
-        updateData.profilePicture = {
-            data: req.files.profilePicture.data,
-            mimeType: req.files.profilePicture.mimetype
+    if (req.files && req.files.profilePicture) {
+        updateData.image = {
+            data: req.files.productPIC.data,
+            mimeType: req.files.productPIC.mimetype
         };
     }
     await Customer.findByIdAndUpdate(
         { _id: req.params.id },
-        updateData,
+
+        {
+            username: req.body.username,
+            fullname: req.body.fullname,
+            phone: req.body.phone,
+            email: req.body.email,
+            address: req.body.address,
+        },
         { new: true }
     )
         .then(() => {
@@ -55,6 +62,33 @@ customerRouter.post("/profile/:id", async (req, res) => {
         })
         .catch((error) => console.log(error.message));
 });
+const vendor = await Vendor.findById(req.params.vid);
+let updateData = {
+    name: req.body.productName,
+    amount: req.body.amount,
+    price: req.body.price,
+    category: req.body.productType,
+    description: req.body.description
+};
+
+// Only update the image if a new image has been uploaded
+if (req.files && req.files.productPIC) {
+    updateData.image = {
+        data: req.files.productPIC.data,
+        mimeType: req.files.productPIC.mimetype
+    };
+}
+
+await Product.findByIdAndUpdate(
+    { _id: req.params.pid },
+    updateData,
+    { new: true }
+)
+    .then(() => {
+        console.log("Product information changed");
+        res.redirect(`/vendor/homepage/${req.params.vid}`);
+    })
+    .catch((error) => console.log(error.message))
 
 //ROUTE TO CART PAGE
 customerRouter.get("/cart/:id", async (req, res) => {

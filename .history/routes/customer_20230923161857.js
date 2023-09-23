@@ -38,10 +38,10 @@ customerRouter.post("/profile/:id", async (req, res) => {
         address: req.body.address,
     }
     // Only update the image if a new image has been uploaded
-    if (req.files && req.files.profilePicture && req.files.profilePicture.mimetype) {
+    if (req.files && req.files.profilePicture) {
         updateData.profilePicture = {
             data: req.files.profilePicture.data,
-            mimeType: req.files.profilePicture.mimetype
+            mimeType: req.files.productPIC.mimetype
         };
     }
     await Customer.findByIdAndUpdate(

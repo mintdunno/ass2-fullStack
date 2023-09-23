@@ -17,7 +17,7 @@
                             <div class="col-md-3 text-center">
                                 <form id="formAccountSettings" method="POST"
                                     action="/customer/profile/<%= customer._id %>" enctype="multipart/form-data"
-                                    onsubmit="alert('Data Saved');">
+                                    onsubmit="alert('Data Saved');">>
                                     <img src="data:image/<%= customer?.profilePicture.contentType %>;base64,<%= customer?.profilePicture.data.toString('base64') %>"
                                         alt="user-avatar" class="img-thumbnail" id="uploadedAvatar">
                                     <label for="upload" class="btn btn-dark mt-2">

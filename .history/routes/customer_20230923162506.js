@@ -41,7 +41,7 @@ customerRouter.post("/profile/:id", async (req, res) => {
     if (req.files && req.files.profilePicture && req.files.profilePicture.mimetype) {
         updateData.profilePicture = {
             data: req.files.profilePicture.data,
-            mimeType: req.files.profilePicture.mimetype
+            mimeType: req.files.productPIC.mimetype
         };
     }
     await Customer.findByIdAndUpdate(
