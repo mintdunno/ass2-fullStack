@@ -44,17 +44,15 @@
                     <div class="d-grid gap-3 gap-md-4">
                         <div class="quantity">
                             <label class="my-md-3" for="prod-quantity">Quantity:</label><br>
-                            <select class="form-select w-50 text-center" name="prod-quantity" id="prod-quantity">
+                            <select disabled class="form-select w-50 text-center" name="prod-quantity"
+                                id="prod-quantity">
                                 <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
                             </select>
                         </div>
                         <button class="btn-add-cart" type="button">Add to Cart</button>
                         <div class="btn-add-cart-status" style="display: none;">Added to your cart</div>
-                        <a href="/customer/cart/<%= customer._id %>"><button class="btn w-100 border" type="button">View Cart</button></a>
+                        <a href="/customer/cart/<%= customer._id %>"><button class="btn w-100 border" type="button">View
+                                Cart</button></a>
                     </div>
                 </div>
             </div>

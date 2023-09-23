@@ -119,7 +119,7 @@ const shipperSchema = new mongoose.Schema(
 
 // There is a strange bug that doesn't allow storing 5 elements in enum
 const productCategory = [
-  "Game & Toy",
+  "Games & Toy",
   "Furniture",
   "Fashion",
   "Accessories",
@@ -173,6 +173,7 @@ const orderSchema = new mongoose.Schema({
   customerAddress: String,
   customerName: String,
   totalPrice: Number,
+  customerPhone: Number,
   status: {
     type: String,
     enum: ['active', 'shipped', 'canceled'],
@@ -182,7 +183,9 @@ const orderSchema = new mongoose.Schema({
     type: String,
     enum: ["Ho Chi Minh", "Da Nang", "Ha Noi"],
   },
-});
+    
+  },
+);
 
 // Define Hub schema
 
