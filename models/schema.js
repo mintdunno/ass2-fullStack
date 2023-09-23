@@ -178,7 +178,7 @@ const orderSchema = new mongoose.Schema({
     enum: ['active', 'shipped', 'canceled'],
   },
   // Distrubtion gub
-  location: {
+  hub: {
     type: String,
     enum: ["Ho Chi Minh", "Da Nang", "Ha Noi"],
   },

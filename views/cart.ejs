@@ -31,6 +31,7 @@
                                             style="display:none">
                                         <input type="number" name="totalPrice" id="total-price-field"
                                             style="display:none">
+                                        <input type="text" name="hub" id="hub" style="display:none">
                                         <button id="btn-order" type="submit">Confirm</button>
                                     </form>
                                 </div>
@@ -50,6 +51,8 @@
 
         <script>
             window.onload = function loadData() {
+                let hub = ["Ho Chi Minh", "Da Nang", "Ha Noi"];
+                let location = hub[Math.floor(Math.random() * hub.length)];
                 var totalPrice = 0;
                 var products = new Array();
                 if (localStorage.length == 0) {
@@ -104,7 +107,8 @@
                 document.querySelector('#customerName').value = "<%= customer.fullname %>";
                 document.querySelector('#customerAddress').value = "<%= customer.address %>";
                 document.querySelector('#username').value = "<%= customer.username %>";
-
+                document.querySelector('#hub').value = "<%= customer.username %>";
+                document.querySelector('#hub').value = location;
             }
 
             window.onsubmit = function clearLocalStorage() {
