@@ -2,18 +2,18 @@
 <%- include('./partials/customer-head') %>
 
 
-    <div class="px-4 px-lg-0 bg-dark container-fluid">
+    <div class="bg-dark px-1 px-sm-5 rounded">
         <!-- For demo purpose -->
-        <div class="container text-white py-5 text-center fw-bolder">
+        <div class="container text-white py-3 text-center fw-bolder">
             <h1>Shopping Cart</h1>
         </div>
         <!-- End -->
 
         <!-- Shopping cart table -->
-        <div class="pb-5">
-            <div class="container">
+        <div>
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                    <div class="col-lg-12 p-2 p-lg-5 bg-white rounded shadow-sm mb-4">
                         <main>
                             <div id="content-box">
                                 <div id="cart-box">
@@ -22,7 +22,7 @@
                                 </div>
                                 <div id="proceed-purchase">
 
-                                    <label class="fs-4" id="total-price">Total price: </label>
+                                    <label id="total-price" class="py-1">Total price: </label>
                                     <form action="/customer/cart/<%= customer._id  %>" method="post">
                                         <input type="text" name="orderItems" style="display:none" id="order-items">
                                         <input type="text" name="customerName" id="customerName" style="display:none">
@@ -74,18 +74,18 @@
                     const itemPrice = document.createElement('div');
                     const itemActionDisplay = document.createElement('div');
                     const itemAction = document.createElement('button');
-                    item.setAttribute('class', 'row item');
+                    item.setAttribute('class', 'row item mb-2');
                     item.setAttribute('id', i);
                     itemDisplay.setAttribute('class', 'col-4 item-display');
                     //itemDisplay.setAttribute('id', i);
-                    
+
                     image.setAttribute('alt', `Image of product ${product.name}`)
-                    title.setAttribute('class', 'item-name fw-bold fs-4');
-                    itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price fs-4');
+                    title.setAttribute('class', 'item-name fw-bold fs-sm-5');
+                    itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price');
                     itemActionDisplay.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
                     itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
-                    
+
                     title.innerText = product.name;
                     itemPrice.innerText = (product.price).toLocaleString('en-US') + 'đ';
                     itemAction.innerText = 'Delete';
@@ -95,7 +95,7 @@
                     })
                     document.querySelector('#content').appendChild(item);
                     document.querySelectorAll('.item').item(i).appendChild(itemDisplay);
-                    
+
                     document.querySelectorAll('.item-display').item(i).appendChild(title);
                     document.querySelectorAll('.item').item(i).appendChild(itemPrice);
                     document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
