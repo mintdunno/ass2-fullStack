@@ -104,17 +104,13 @@ customerRouter.get("/:cid/search", async (req, res) => {
 });
 
 // Price filter
-customerRouter.post("/priceFilter/:cid", async (req, res) => {
+customerRouter.post("/priceFilter", async (req, res) => {
     const min = req.body.min;
     const max = req.body.max;
+    const regexPattern = new RegExp(searchTerm, "i");
     const customer = await Customer.findById(req.params.cid);
 
-    await Product.find({
-        price: {
-            $gte: min,
-            $lte: max
-        }
-    })
+    await Product.find({ name: { $regex: regexPattern } })
         .then((products) => {
             res.render("search", { products, customer });
         })

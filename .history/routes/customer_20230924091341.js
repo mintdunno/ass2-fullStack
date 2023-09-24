@@ -104,10 +104,10 @@ customerRouter.get("/:cid/search", async (req, res) => {
 });
 
 // Price filter
-customerRouter.post("/priceFilter/:cid", async (req, res) => {
+customerRouter.post("/priceFilter", async (req, res) => {
     const min = req.body.min;
     const max = req.body.max;
-    const customer = await Customer.findById(req.params.cid);
+    const customer = await Customer.findById(req.body.customerID);
 
     await Product.find({
         price: {

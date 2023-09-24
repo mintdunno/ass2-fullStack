@@ -116,7 +116,7 @@ customerRouter.post("/priceFilter/:cid", async (req, res) => {
         }
     })
         .then((products) => {
-            res.render("search", { products, customer });
+            res.render("customer-homepage", { products, customer });
         })
         .catch((error) => console.log(error.message));
 });

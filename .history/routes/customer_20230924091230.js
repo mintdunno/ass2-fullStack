@@ -104,10 +104,11 @@ customerRouter.get("/:cid/search", async (req, res) => {
 });
 
 // Price filter
-customerRouter.post("/priceFilter/:cid", async (req, res) => {
+customerRouter.post("/priceFilter", async (req, res) => {
     const min = req.body.min;
     const max = req.body.max;
-    const customer = await Customer.findById(req.params.cid);
+    const cid = req.body.customerID
+    const customer = await Customer.findById(cid);
 
     await Product.find({
         price: {
@@ -118,7 +119,6 @@ customerRouter.post("/priceFilter/:cid", async (req, res) => {
         .then((products) => {
             res.render("search", { products, customer });
         })
-        .catch((error) => console.log(error.message));
 });
 
 // Route to category page

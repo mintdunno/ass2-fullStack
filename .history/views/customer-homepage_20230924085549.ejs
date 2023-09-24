@@ -44,11 +44,12 @@
 
       <h1 class="p-3 fw-bold">Popular</h1>
       <!-- Filter -->
-      <form class="mb-4" action="/customer/priceFilter/<%= customer._id %>" method="post">
-        <label for="minPrice">Min price:</label>
-        <input type="number" name="min" id="minPrice" value="0">
-        <label for="maxPrice">Max price:</label>
-        <input type="number" name="max" id="maxPrice">
+      <form class="mb-4" action="/customer/priceFilter" method="post">
+        <input type="text" name="customerID" value="<%= customer._id %>" hidden>
+        <label for="min">Min price:</label>
+        <input type="number" name="min" id="min">
+        <label for="max">Max price:</label>
+        <input type="number" name="max" id="max">
         <button class="text-light bg-dark rounded ms-3" type="submit">Filter</button>
       </form>
 
