@@ -13,9 +13,10 @@ How to use this application: <br />
 7/ Access URL "http://localhost:6900/"<br />
 
 ---
+
 **Demo Account**
 
-Vendor <br />
+**----------Vendor----------** <br />
 Username: testervendor1 <br />
 Password: Password@123 <br /><br />
 
@@ -31,14 +32,14 @@ Password: Password@123 <br /><br />
 Username: testervendor5 <br />
 Password: Password@123 <br /><br />
 
-Customer <br />
+**----------Customer----------** <br />
 Username: testercustomer1 <br />
 Password: Password@123 <br /><br />
 
 Username: testercustomer2 <br />
 Password: Password@123 <br /><br />
 
-Shipper <br />
+**----------Shipper----------** <br />
 Username: testershipper1 <br />
 Password: Password@123 <br /><br />
 
