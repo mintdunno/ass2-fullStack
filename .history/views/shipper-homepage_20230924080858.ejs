@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
                     <form action="/shipper/order/update/<%= shipper._id %>" id="delivery-form" method="post"
-                        onsubmit="alert(`Order <%= order._id %>: status saved`);">
+                        onsubmit="alert('Data Saved');">
                         <h5 class="fw-bold">Status</h5>
                         <input type="text" value="<%= order._id %>" name="orderID" hidden>
                         <select class="form-select text-center" aria-label="Default select example"
