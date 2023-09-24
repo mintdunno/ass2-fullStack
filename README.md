@@ -13,13 +13,40 @@ How to use this application: <br />
 7/ Access URL "http://localhost:6900/"<br />
 
 ---
-
+<hr>
 **Demo Account**
 
-Vendor:
+Vendor <br />
+Username: testervendor1 <br />
+Password: Password@123 <br /><br />
 
-Customer
+Username: testervendor2 <br />
+Password: Password@123 <br /><br />
 
-Shipper
+Username: testervendor3 <br />
+Password: Password@123 <br /><br />
+
+Username: testervendor4 <br />
+Password: Password@123 <br /><br />
+
+Username: testervendor5 <br />
+Password: Password@123 <br /><br />
+
+Customer <br />
+Username: testercustomer1 <br />
+Password: Password@123 <br /><br />
+
+Username: testercustomer2 <br />
+Password: Password@123 <br /><br />
+
+Shipper <br />
+Username: testershipper1 <br />
+Password: Password@123 <br /><br />
+
+Username: testershipper2 <br />
+Password: Password@123 <br /><br />
+
+Username: testershipper3 <br />
+Password: Password@123 <br /><br />
 
 ---
