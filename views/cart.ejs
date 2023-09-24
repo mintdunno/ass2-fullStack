@@ -78,14 +78,14 @@
                     item.setAttribute('id', i);
                     itemDisplay.setAttribute('class', 'col-4 item-display');
                     //itemDisplay.setAttribute('id', i);
-                    image.setAttribute('class', 'product-image');
+                    
                     image.setAttribute('alt', `Image of product ${product.name}`)
-                    title.setAttribute('class', 'item-name');
+                    title.setAttribute('class', 'item-name fw-bold fs-3');
                     itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price');
                     itemActionDisplay.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
                     itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
-                    image.src = `data:${product.image.mimeType};base64,${product.image.data.toString('base64')}`;
+                    
                     title.innerText = product.name;
                     itemPrice.innerText = (product.price).toLocaleString('en-US') + 'đ';
                     itemAction.innerText = 'Delete';
@@ -95,7 +95,7 @@
                     })
                     document.querySelector('#content').appendChild(item);
                     document.querySelectorAll('.item').item(i).appendChild(itemDisplay);
-                    document.querySelectorAll('.item-display').item(i).appendChild(image);
+                    
                     document.querySelectorAll('.item-display').item(i).appendChild(title);
                     document.querySelectorAll('.item').item(i).appendChild(itemPrice);
                     document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
