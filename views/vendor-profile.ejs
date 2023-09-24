@@ -45,7 +45,7 @@
                                 <div class="col-md-3 text-center">
                                     <form id="formAccountSettings" method="POST"
                                         action="/vendor/profile/<%= vendor?.id %>" enctype="multipart/form-data"
-                                        onsubmit="alert('Data Saved');">
+                                        onsubmit="alert('Vendor Information Changed');">
                                         <img src="data:image/<%= vendor?.profilePicture.contentType %>;base64,<%= vendor?.profilePicture.data.toString('base64') %>"
                                             alt="user-avatar" class="img-thumbnail" id="uploadedAvatar">
                                         <label for="upload" class="btn btn-dark mt-2">
