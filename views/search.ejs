@@ -10,11 +10,11 @@
                 <form class="mb-4 ms-3 filter-group" action="/customer/priceFilter/<%= customer._id %>" method="post">
                     <div class="d-block d-sm-inline mb-2 mb-sm-0">
                         <label for="minPrice">Min price:</label>
-                        <input type="number" name="min" id="minPrice" value="<%= min %>" required>
+                        <input type="number" name="min" id="minPrice" value="<%= min %>">
                     </div>
                     <div class="d-block d-sm-inline ms-sm-3 mb-2 mb-sm-0">
                         <label for="maxPrice">Max price:</label>
-                        <input type="number" name="max" id="maxPrice" value="<%= max %>" required>
+                        <input type="number" name="max" id="maxPrice" value="<%= max %>">
                     </div>
                     <button class="text-light bg-dark rounded ms-sm-3" type="submit">Filter</button>
                 </form>
