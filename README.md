@@ -14,8 +14,12 @@ How to use this application: <br />
 
 ---
 
-**NOTE**
+**Demo Account**
 
-Hello
+Vendor:
+
+Customer
+
+Shipper
 
 ---
