@@ -62,7 +62,7 @@ OpenAI (2023) ChatGPT (August 3 version) [Large language model], accessed 23 Sep
                                 <% if (category==="Fashion" ) { %>
                                     <div class="mb-5">
                                         <img loading="lazy" src="/img/banner/fashion.png" class="d-block w-100 rounded"
-                                            alt="..." />
+                                            alt="Fashion Banner" />
                                     </div>
                                     <h2 class="fw-bold">
                                         <%= category %>
@@ -71,7 +71,7 @@ OpenAI (2023) ChatGPT (August 3 version) [Large language model], accessed 23 Sep
                                         <% if (category==="Accessories" ) { %>
                                             <div class="mb-5">
                                                 <img loading="lazy" src="/img/banner/accessories.png"
-                                                    class="d-block w-100 rounded" alt="..." />
+                                                    class="d-block w-100 rounded" alt="Accessories Banner" />
                                             </div>
                                             <h2 class="fw-bold">
                                                 <%= category %>
@@ -80,7 +80,7 @@ OpenAI (2023) ChatGPT (August 3 version) [Large language model], accessed 23 Sep
                                                 <% if (category==="Others" ) { %>
                                                     <div class="mb-5">
                                                         <img loading="lazy" src="/img/banner/others.png"
-                                                            class="d-block w-100 rounded" alt="..." />
+                                                            class="d-block w-100 rounded" alt="Other Product Banner" />
                                                     </div>
                                                     <h2 class="fw-bold">
                                                         <%= category %>
@@ -97,7 +97,7 @@ OpenAI (2023) ChatGPT (August 3 version) [Large language model], accessed 23 Sep
                                                                             href="/customer/<%= customer._id  %>/product/<%= product._id  %>"><img
                                                                                 loading="lazy"
                                                                                 src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
-                                                                                class="card-img-top" alt="..." /></a>
+                                                                                class="card-img-top" alt="Product image" /></a>
                                                                         <div class="card-body text-center">
                                                                             <h5 class="card-title">
                                                                                 <%= product.name %>
