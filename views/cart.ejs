@@ -51,9 +51,8 @@
         </div>
 
         <script>
-            window.onload = function loadData() {
+            window.onload = function cartData() {
                 let hub = ["Ho Chi Minh", "Da Nang", "Ha Noi"];
-                let location = hub[Math.floor(Math.random() * hub.length)];
                 var totalPrice = 0;
                 var products = new Array();
                 if (localStorage.length == 0) {
@@ -68,21 +67,21 @@
                     const product = JSON.parse(localStorage.getItem(key));
                     totalPrice += product.price;
                     const item = document.createElement('div');
-                    const itemDisplay = document.createElement('div');
+                    const productBox = document.createElement('div');
                     const image = document.createElement('img');
                     const title = document.createElement('div');
                     const itemPrice = document.createElement('div');
-                    const itemActionDisplay = document.createElement('div');
+                    const productOption = document.createElement('div');
                     const itemAction = document.createElement('button');
                     item.setAttribute('class', 'row item mb-2');
                     item.setAttribute('id', i);
-                    itemDisplay.setAttribute('class', 'col-4 item-display');
-                    //itemDisplay.setAttribute('id', i);
+                    productBox.setAttribute('class', 'col-4 item-display');
+                    //productBox.setAttribute('id', i);
 
                     image.setAttribute('alt', `Image of product ${product.name}`)
                     title.setAttribute('class', 'item-name fw-bold fs-sm-5');
                     itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price');
-                    itemActionDisplay.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
+                    productOption.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
                     itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
 
@@ -94,14 +93,15 @@
                         window.location.reload();
                     })
                     document.querySelector('#content').appendChild(item);
-                    document.querySelectorAll('.item').item(i).appendChild(itemDisplay);
+                    document.querySelectorAll('.item').item(i).appendChild(productBox);
 
                     document.querySelectorAll('.item-display').item(i).appendChild(title);
                     document.querySelectorAll('.item').item(i).appendChild(itemPrice);
-                    document.querySelectorAll('.item').item(i).appendChild(itemActionDisplay);
+                    document.querySelectorAll('.item').item(i).appendChild(productOption);
                     document.querySelectorAll('.action-display').item(i).appendChild(itemAction);
                     products.push(product.name);
                 }
+                let location = hub[Math.floor(Math.random() * hub.length)];
                 document.querySelector('#total-price').innerText = 'Total price: ' + totalPrice.toLocaleString('en-US') + 'đ';
                 document.querySelector('#total-price-field').value = totalPrice;
                 document.querySelector('#order-items').value = products;
