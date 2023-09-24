@@ -153,33 +153,33 @@ vendorRouter.post("/profile/:id", async (req, res) => {
 
 });
 
-// Vendor PRIVACY PAGE
-vendorRouter.get("/:id/privacy", async (req, res) => {
-    const vendor = await Vendor.findById(req.params.id);
+// //ROUTE TO SHIPPER PRIVACY PAGE
+// shipperRouter.get("/:id/privacy", async (req, res) => {
+//     const shipper = await Shipper.findById(req.params.id);
 
-    res.render("vendor-privacy", { vendor });
-});
+//     res.render("shipper-privacy", { shipper });
+// });
 
-//ROUTE TO SHIPPER OPERATING PAGE
-vendorRouter.get("/:id/operating", async (req, res) => {
-    const vendor = await Vendor.findById(req.params.id);
+// //ROUTE TO SHIPPER OPERATING PAGE
+// shipperRouter.get("/:id/operating", async (req, res) => {
+//     const shipper = await Shipper.findById(req.params.id);
 
-    res.render("vendor-operating", { vendor });
-});
+//     res.render("shipper-operating", { shipper });
+// });
 
-//ROUTE TO SHIPPER SHIPPING PAGE
-vendorRouter.get("/:id/shipping", async (req, res) => {
-    const vendor = await Vendor.findById(req.params.id);
+// //ROUTE TO SHIPPER SHIPPING PAGE
+// shipperRouter.get("/:id/shipping", async (req, res) => {
+//     const shipper = await Shipper.findById(req.params.id);
 
-    res.render("vendor-shipping", { vendor });
-});
+//     res.render("shipper-shipping", { shipper });
+// });
 
-//ROUTE TO SHIPPER RETURN PAGE
-vendorRouter.get("/:id/return", async (req, res) => {
-    const vendor = await Vendor.findById(req.params.id);
+// //ROUTE TO SHIPPER RETURN PAGE
+// shipperRouter.get("/:id/return", async (req, res) => {
+//     const shipper = await Shipper.findById(req.params.id);
 
-    res.render("vendor-return", { vendor });
-});
+//     res.render("shipper-return", { shipper });
+// });
 
 
 module.exports = vendorRouter;
