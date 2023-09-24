@@ -10,6 +10,7 @@ body {
     text-decoration: none;
 }
 
+/* card */
 .card img {
     object-fit: contain;
     height: 250px;
@@ -51,4 +52,20 @@ body {
     .card img {
         height: 345px;
     }
+}
+
+/* filter */
+.filter-group input {
+    width: 100px;
+}
+
+.filter-group label {
+    font-weight: bold;
+    box-sizing: border-box;
+    width: 80px;
+}
+
+.filter-group button {
+    border: solid 2px #212529;
+    width: 60px;
 }
