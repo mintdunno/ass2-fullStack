@@ -1,6 +1,6 @@
 Welcome to Group 18 project <br />
 GitHub Repository: https://github.com/mintdunno/ass2-fullStack <br />
-Youtube URL:<br />
+Youtube URL: https://youtu.be/fOS7KPkOw5g?si=2b5R_JL8OXvfVsrc <br />
 
 <hr>
 How to use this application: <br />
