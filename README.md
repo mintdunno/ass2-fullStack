@@ -13,7 +13,6 @@ How to use this application: <br />
 7/ Access URL "http://localhost:6900/"<br />
 
 ---
-<hr>
 **Demo Account**
 
 Vendor <br />
