@@ -6,29 +6,43 @@
     <div class="mx-md-5">
         <main>
             <h2>Search result</h2>
-            <%- include('./partials/priceFilter') %>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" id="smallCard">
-                    <!-- card -->
-                    <% products.forEach(function (product, index) { %>
-                        <div class="col">
-                            <div class="card h-100">
-                                <a class="stretched-link"
-                                    href="/customer/<%= customer._id %>/product/<%= product._id %>"><img loading="lazy"
-                                        src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
-                                        class="card-img-top" alt="..."></a>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <%= product.name %>
-                                    </h5>
-                                    <p class="card-text"><b>
-                                            <%= (product.price).toLocaleString('en-US') %>&#8363;
-                                        </b></p>
+            <% if (typeof min !='undefined' || typeof max !='undefined' ) { %>
+                <form class="mb-4 ms-3 filter-group" action="/customer/priceFilter/<%= customer._id %>" method="post">
+                    <div class="d-block d-sm-inline mb-2 mb-sm-0">
+                        <label for="minPrice">Min price:</label>
+                        <input type="number" name="min" id="minPrice" value="<%= min %>" required>
+                    </div>
+                    <div class="d-block d-sm-inline ms-sm-3 mb-2 mb-sm-0">
+                        <label for="maxPrice">Max price:</label>
+                        <input type="number" name="max" id="maxPrice" value="<%= max %>" required>
+                    </div>
+                    <button class="text-light bg-dark rounded ms-sm-3" type="submit">Filter</button>
+                </form>
+                <% } %>
+
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" id="smallCard">
+                        <!-- card -->
+                        <% products.forEach(function (product, index) { %>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <a class="stretched-link"
+                                        href="/customer/<%= customer._id %>/product/<%= product._id %>"><img
+                                            loading="lazy"
+                                            src="data:<%= product.image.mimeType %>;base64,<%= product.image.data.toString('base64') %>"
+                                            class="card-img-top" alt="..."></a>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">
+                                            <%= product.name %>
+                                        </h5>
+                                        <p class="card-text"><b>
+                                                <%= (product.price).toLocaleString('en-US') %>&#8363;
+                                            </b></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <% }) %>
-                </div>
+                            <% }) %>
+                    </div>
 
         </main>
     </div>

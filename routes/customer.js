@@ -98,7 +98,7 @@ customerRouter.get("/:cid/search", async (req, res) => {
 
     await Product.find({ name: { $regex: regexPattern } })
         .then((products) => {
-            res.render("search", { products, customer });
+            res.render("search", { products, customer, min, max });
         })
         .catch((error) => console.log(error.message));
 });
