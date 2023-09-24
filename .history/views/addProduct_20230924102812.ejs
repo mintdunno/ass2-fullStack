@@ -2,32 +2,29 @@
 
     <!-- Add Product is here -->
     <div class="container my-5 shadow-lg p-3 rounded-5">
-        <h2 class="text-center fw-bolder text-success">Update Product: <%= product.name %>
-        </h2>
+        <h2 class="text-center fw-bolder text-success">ADD NEW PRODUCT</h2>
         <div class="m-4" style="font-size: 15px; font-family:sans-serif;">
             <!-- Link to add post produt -->
-            <form action="/vendor/product/<%= vendor.id %>/update/<%= product.id %>" method="post" id="form"
-                enctype="multipart/form-data">
+            <form action="/vendor/products/add/" method="post" id="form" enctype="multipart/form-data">
 
                 <!-- Product Name -->
                 <div class="mb-4">
                     <label for="productName" class="d-block mb-2">📇 Product name:</label>
                     <input type="text" class="w-100 form-control shadow-sm" name="productName" id="productName"
-                        value="<%= product.name %>" required>
+                        minlength="5" required>
                 </div>
 
                 <!-- Product amout -->
                 <div class="mb-4">
                     <label for="amount" class="d-block mb-2">🗃️ Amount:</label>
                     <input min="0" type="number" class="w-100 form-control shadow-sm" name="amount" id="amount"
-                        value="<%= product.amount %>" required>
+                        required>
                 </div>
 
                 <!-- Product price -->
                 <div class="mb-4">
                     <label for="price" class="d-block mb-2">💸 Price:</label>
-                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="price" id="price"
-                        value="<%= product.price %>" required>
+                    <input min="0" type="number" class="w-100 form-control shadow-sm" name="price" id="price" required>
                 </div>
 
                 <!-- Product type -->
@@ -35,16 +32,11 @@
                     <label for="productType" class="d-block mb-2">⛰️ Product type:</label>
                     <select name="productType" id="productType" class="form-control shadow-sm" required>
                         <option value="">-- Product Type --</option>
-                        <option value="Games" <% if (product.category==="Games" ) { %>selected<% } %> >Game
-                                & Toy</option>
-                        <option value="Furniture" <% if (product.category==="Furniture" ) { %>
-                            selected<% } %>>Furniture</option>
-                        <option value="Fashion" <% if (product.category==="Fashion" ) { %>
-                            selected<% } %> >Books</option>
-                        <option value="Accessories" <% if (product.category==="Accessories" ) { %>selected<% } %>
-                                >Accessories</option>
-                        <option value="Others" <% if (product.category==="Others" ) { %>selected<% } %>>Others
-                        </option>
+                        <option value="Games">Games & Toys</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
 
@@ -52,47 +44,57 @@
                 <div class="mb-4">
                     <label for="productPIC" class="d-block mb-2">📷 Product Image:</label>
                     <input type="file" class="w-100 form-control shadow-sm" name="productPIC" id="productPIC"
-                        accept="image/*">
+                        accept="image/*" required>
                 </div>
 
                 <!-- product description -->
                 <div class="mb-4">
                     <label for="description" class="d-block mb-2">📝 Description:</label>
-                    <textarea name="description" id="description" class="form-control"
-                        rows="5"><%= product.description %></textarea>
+                    <textarea name="description" id="description" class="form-control" rows="5"
+                        maxlength="500"></textarea>
                 </div>
                 <div>
                     <input type="hidden" name="vendorUsername" id="vendorUsername" value="<%= vendor.username %>">
                 </div>
+
+                <div>
+                    <input type="hidden" name="vendorId" id="vendorId" value="<%= vendor.id %>">
+                </div>
+
+
 
 
                 <!-- Button things -->
                 <div id="error" style="color: red !important;" class="text-center"></div>
                 <div class="text-center">
                     <button type="reset" class="rounded border-0 px-4 py-2 bg-danger m-3">Reset</button>
+                    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Update
+                        Launch demo modal
                     </button>
+
+                    <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Product informtion:</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Please make sure your Product information
+                                    ...
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <button type="submit" class="rounded border-0 px-4 py-2 bg-success m-3">Create</button>
                 </div>
             </form>
         </div>
