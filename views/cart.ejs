@@ -22,7 +22,7 @@
                                 </div>
                                 <div id="proceed-purchase">
 
-                                    <label id="total-price">Total price: </label>
+                                    <label class="fs-4" id="total-price">Total price: </label>
                                     <form action="/customer/cart/<%= customer._id  %>" method="post">
                                         <input type="text" name="orderItems" style="display:none" id="order-items">
                                         <input type="text" name="customerName" id="customerName" style="display:none">
@@ -80,8 +80,8 @@
                     //itemDisplay.setAttribute('id', i);
                     
                     image.setAttribute('alt', `Image of product ${product.name}`)
-                    title.setAttribute('class', 'item-name fw-bold fs-3');
-                    itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price');
+                    title.setAttribute('class', 'item-name fw-bold fs-4');
+                    itemPrice.setAttribute('class', 'col-4 d-flex align-items-center justify-content-center item-price fs-4');
                     itemActionDisplay.setAttribute('class', 'col-4 d-flex align-items-center justify-content-end action-display');
                     itemAction.setAttribute('class', 'btn-delete bg-danger rounded text-light');
 
