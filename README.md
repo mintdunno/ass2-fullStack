@@ -11,3 +11,11 @@ How to use this application: <br />
 5/ Run comand "npm start" or "node index.js"<br />
 6/ Open any browser (recomend lastest version of Chrome)<br />
 7/ Access URL "http://localhost:6900/"<br />
+
+---
+
+**NOTE**
+
+Hello
+
+---
