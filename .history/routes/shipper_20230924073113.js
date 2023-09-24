@@ -10,13 +10,13 @@ shipperRouter.get("/homepage/:id", async (req, res) => {
     const shipper = await Shipper.findById(req.params.id);
     var orders;
     if (shipper.location === "Ho Chi Minh") {
-        orders = await Order.find({ hub: "Ho Chi Minh", status: "active" })
+        orders = await Order.find({ hub: "Ho Chi Minh" })
     }
     if (shipper.location === "Da Nang") {
-        orders = await Order.find({ hub: "Da Nang", status: "active" })
+        orders = await Order.find({ hub: "Da Nang" })
     }
     if (shipper.location === "Ha Noi") {
-        orders = await Order.find({ hub: "Ha Noi", status: "active" })
+        orders = await Order.find({ hub: "Ha Noi" })
     }
     try {
         res.render("shipper-homepage", { shipper, orders });
@@ -64,15 +64,15 @@ shipperRouter.post("/profile/:id", async (req, res) => {
 });
 
 // Update Status for orders
-shipperRouter.post("/order/update/:sid", (req, res) => {
+shipperRouter.post("/order/update/", (req, res) => {
     Order.findOneAndUpdate(
         { _id: req.body.orderID },
-        { status: req.body.deliveryStatus },
+        { status: req.body.delivery - form },
         { new: true }
     )
         .then(() => {
             console.log("The order is updated");
-            res.redirect(`/shipper/homepage/${req.params.sid}`);
+            res.redirect(`/shipper/homepage/${req.body.uid}`);
         })
         .catch((error) => console.log(error.message));
 });

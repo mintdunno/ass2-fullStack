@@ -33,13 +33,13 @@
                     </div>
                 </div>
                 <div class="col-md -2 bg-white text-center d-flex align-items-center ml-3 py-2">
-                    <form action="/shipper/order/update/<%= shipper._id %>" id="delivery-form" method="post">
+                    <form action="/shipper/order/update/" id="delivery-form" method="post">
                         <h5 class="fw-bold">Status</h5>
                         <input type="text" value="<%= order._id %>" name="orderID" hidden>
                         <select class="form-select text-center" aria-label="Default select example"
                             name="deliveryStatus">
-                            <option value="active">Active</option>
-                            <option value="shipped">Delivered</option>
+                            <option value="active" selected>Active</option>
+                            <option value="delivered">Delivered</option>
                             <option value="canceled">Canceled</option>
                         </select>
                         <button type="submit" class="btn btn-success w-100 my-2">Save

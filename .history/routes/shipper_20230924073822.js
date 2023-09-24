@@ -13,10 +13,10 @@ shipperRouter.get("/homepage/:id", async (req, res) => {
         orders = await Order.find({ hub: "Ho Chi Minh", status: "active" })
     }
     if (shipper.location === "Da Nang") {
-        orders = await Order.find({ hub: "Da Nang", status: "active" })
+        orders = await Order.find({ hub: "Da Nang" })
     }
     if (shipper.location === "Ha Noi") {
-        orders = await Order.find({ hub: "Ha Noi", status: "active" })
+        orders = await Order.find({ hub: "Ha Noi" })
     }
     try {
         res.render("shipper-homepage", { shipper, orders });
